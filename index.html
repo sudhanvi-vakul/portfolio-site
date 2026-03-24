@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sudhanvi Vakul Vakulabharanam | VLSI Portfolio</title>
+  <meta name="description" content="VLSI design and verification portfolio with roadmap navigation, dark/light mode, placeholder project details links, and categorized projects." />
+  <style>
+    :root {
+      --max: 1320px;
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-pill: 999px;
+      --shadow: 0 24px 80px rgba(0,0,0,0.12);
+      --transition: 180ms ease;
+    }
+
+    body[data-theme="dark"] {
+      --bg: #050505;
+      --bg-alt: #0a0a0a;
+      --panel: rgba(255,255,255,0.04);
+      --panel-strong: rgba(255,255,255,0.06);
+      --panel-soft: rgba(255,255,255,0.03);
+      --line: rgba(255,255,255,0.10);
+      --line-strong: rgba(255,255,255,0.18);
+      --text: #f7f7f7;
+      --muted: #b2b2b2;
+      --muted-2: #8d8d8d;
+      --accent: #ffffff;
+      --active-bg: linear-gradient(180deg, #ffffff, #dddddd);
+      --active-text: #000000;
+      --inactive-bg: rgba(255,255,255,0.02);
+      --grid: rgba(255,255,255,0.014);
+      --hero-glow-1: rgba(255,255,255,0.08);
+      --hero-glow-2: rgba(255,255,255,0.05);
+      --photo-ring: rgba(255,255,255,0.16);
+      --photo-inner: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      --toggle-bg: rgba(255,255,255,0.06);
+      --toggle-fg: #ffffff;
+    }
+
+    body[data-theme="light"] {
+      --bg: #f7fbff;
+      --bg-alt: #eef6ff;
+      --panel: rgba(120,170,255,0.12);
+      --panel-strong: rgba(120,170,255,0.18);
+      --panel-soft: rgba(255,255,255,0.82);
+      --line: rgba(58,109,188,0.12);
+      --line-strong: rgba(58,109,188,0.22);
+      --text: #0f1b2c;
+      --muted: #4f6280;
+      --muted-2: #6d83a5;
+      --accent: #1f5ed8;
+      --active-bg: linear-gradient(180deg, rgba(31,94,216,0.18), rgba(31,94,216,0.10));
+      --active-text: #0f1b2c;
+      --inactive-bg: rgba(255,255,255,0.74);
+      --grid: rgba(67,118,202,0.04);
+      --hero-glow-1: rgba(80,148,255,0.16);
+      --hero-glow-2: rgba(80,148,255,0.10);
+      --photo-ring: rgba(31,94,216,0.18);
+      --photo-inner: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(142,190,255,0.28));
+      --toggle-bg: rgba(31,94,216,0.10);
+      --toggle-fg: #1f5ed8;
+      --shadow: 0 24px 80px rgba(51,104,188,0.12);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 12% 10%, var(--hero-glow-1), transparent 0 20%),
+        radial-gradient(circle at 86% 8%, var(--hero-glow-2), transparent 0 22%),
+        linear-gradient(180deg, var(--bg-alt) 0%, var(--bg) 100%);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.5;
+      overflow-x: hidden;
+      transition: background var(--transition), color var(--transition);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size: 82px 82px;
+      opacity: 0.55;
+      pointer-events: none;
+      z-index: -2;
+      mask-image: radial-gradient(circle at center, black 46%, transparent 100%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .wrap { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(18px);
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line-strong);
+      background: var(--photo-inner);
+      font-size: 0.86rem;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a,
+    .theme-toggle {
+      min-height: 42px;
+      padding: 0 14px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      border: 1px solid transparent;
+      background: transparent;
+      transition: var(--transition);
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .nav-links a:hover,
+    .theme-toggle:hover {
+      color: var(--text);
+      border-color: var(--line);
+      background: var(--panel);
+    }
+
+    .theme-toggle {
+      gap: 8px;
+      background: var(--toggle-bg);
+      color: var(--toggle-fg);
+      border-color: var(--line);
+      font-weight: 600;
+    }
+
+    main section { padding: 34px 0; }
+    .hero { padding: 70px 0 26px; }
+
+    .panel {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--panel), var(--panel-soft));
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-shell,
+    .roadmap-shell,
+    .category,
+    .about-card,
+    .contact-card,
+    .additional-shell {
+      padding: 30px;
+    }
+
+    .panel::after {
+      content: "";
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      right: -12%;
+      bottom: -40%;
+      background: radial-gradient(circle, var(--hero-glow-2), transparent 64%);
+      filter: blur(20px);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 8px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--line-strong);
+      text-transform: uppercase;
+      font-size: 0.76rem;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      background: color-mix(in srgb, var(--panel) 70%, transparent);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(360px, 460px);
+      gap: 36px;
+      align-items: stretch;
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero-copy h1 {
+      margin: 18px 0 12px;
+      font-size: clamp(2rem, 4vw, 4rem);
+      line-height: 0.94;
+      letter-spacing: -0.05em;
+    }
+
+    .lead {
+      margin: 0 0 24px;
+      max-width: 58ch;
+      font-size: clamp(1rem, 1.2vw, 1.25rem);
+      color: var(--muted);
+    }
+
+    .actions,
+    .preview-row,
+    .project-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .preview-row {
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .btn {
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid var(--line);
+      transition: var(--transition);
+      font-weight: 600;
+      background: transparent;
+      color: var(--text);
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn.primary {
+      background: var(--active-bg);
+      color: var(--active-text);
+      border-color: transparent;
+    }
+
+    .btn.secondary {
+      background: color-mix(in srgb, var(--panel) 75%, transparent);
+      color: var(--text);
+    }
+
+    .btn.ghost {
+      background: transparent;
+      color: var(--muted);
+      border-color: var(--line);
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 18px;
+      align-content: start;
+      padding: 10px 6px 4px;
+    }
+
+    .portrait-shell {
+      width: 100%;
+      min-height: 470px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: color-mix(in srgb, var(--panel) 78%, transparent);
+      display: grid;
+      place-items: center;
+      padding: 18px;
+    }
+
+    .portrait {
+      width: min(300px, 72vw);
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      border: 1px solid var(--photo-ring);
+      background: radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 0 18%), var(--photo-inner);
+      box-shadow:
+        inset 0 0 26px color-mix(in srgb, var(--accent) 14%, transparent),
+        0 20px 60px color-mix(in srgb, var(--accent) 10%, transparent);
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+    }
+
+    .portrait::before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border-radius: 50%;
+      border: 1px dashed color-mix(in srgb, var(--accent) 22%, transparent);
+      z-index: 1;
+    }
+
+    .portrait-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      position: relative;
+      z-index: 0;
+    }
+
+    .portrait-overlay {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 28px;
+      z-index: 2;
+      background: linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.22));
+      color: #ffffff;
+    }
+
+    .portrait-overlay strong {
+      display: block;
+      font-size: 1.04rem;
+      letter-spacing: 0.04em;
+      margin-bottom: 8px;
+    }
+
+    .portrait-overlay span {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.82);
+    }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .quick-card,
+    .mini {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: color-mix(in srgb, var(--panel) 80%, transparent);
+      padding: 15px;
+    }
+
+    .quick-card strong,
+    .mini strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .quick-card span,
+    .mini span {
+      color: var(--muted);
+      font-size: 0.92rem;
+      word-break: break-word;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(1.7rem, 3vw, 2.7rem);
+      letter-spacing: -0.04em;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 58ch;
+    }
+
+    .roadmap-shell { overflow: hidden; }
+
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 235px));
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .roadmap-card {
+      padding: 14px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: var(--inactive-bg);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: left;
+      color: var(--muted-2);
+      transition: var(--transition);
+      min-height: 146px;
+    }
+
+    .roadmap-card .phase {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.72rem;
+      color: var(--muted-2);
+    }
+
+    .roadmap-card strong {
+      font-size: 0.98rem;
+      color: inherit;
+    }
+
+    .roadmap-card span {
+      font-size: 0.85rem;
+      color: inherit;
+    }
+
+    .roadmap-card.active {
+      cursor: pointer;
+      background: var(--active-bg);
+      color: var(--active-text);
+      border-color: color-mix(in srgb, var(--accent) 18%, transparent);
+      box-shadow: 0 12px 34px color-mix(in srgb, var(--accent) 10%, transparent);
+    }
+
+    .roadmap-card.active:hover { transform: translateY(-3px); }
+    .roadmap-card.inactive { cursor: default; }
+
+    .roadmap-badge {
+      margin-top: auto;
+      display: inline-flex;
+      width: fit-content;
+      padding: 7px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid currentColor;
+      font-size: 0.78rem;
+      opacity: 0.82;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .legend i {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 1px solid var(--line-strong);
+      display: inline-block;
+    }
+
+    .legend .on { background: color-mix(in srgb, var(--accent) 18%, transparent); }
+    .legend .off { background: var(--inactive-bg); }
+
+    .category-stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .category { scroll-margin-top: 96px; }
+
+    .category-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: start;
+      margin-bottom: 18px;
+    }
+
+    .category-head h3 {
+      margin: 0 0 6px;
+      font-size: 1.55rem;
+      letter-spacing: -0.03em;
+    }
+
+    .category-head p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 64ch;
+    }
+
+    .count-pill {
+      white-space: nowrap;
+      padding: 9px 12px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--panel) 84%, transparent);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .project-card {
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--panel) 76%, transparent);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-height: 100%;
+      transition: var(--transition);
+    }
+
+    .project-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--line-strong);
+      background: color-mix(in srgb, var(--panel-strong) 82%, transparent);
+    }
+
+    .project-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .project-title {
+      margin: 0;
+      font-size: 1.08rem;
+      letter-spacing: -0.02em;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--line);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      white-space: nowrap;
+      background: color-mix(in srgb, var(--panel) 72%, transparent);
+    }
+
+    .status::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .project-desc {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .chip-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 0 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--panel) 80%, transparent);
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .project-links {
+      margin-top: auto;
+      padding-top: 4px;
+    }
+
+    .project-links .btn {
+      min-height: 40px;
+      padding: 0 14px;
+      font-size: 0.92rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .about-card,
+    .contact-card,
+    .additional-shell {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--panel), var(--panel-soft));
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+    }
+
+    .about-card p,
+    .contact-card p,
+    .contact-card li,
+    .about-card li { color: var(--muted); }
+
+    .mono-list {
+      margin: 16px 0 0;
+      padding-left: 18px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .contact-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--panel) 78%, transparent);
+      align-items: center;
+    }
+
+    .contact-item span { color: var(--muted); font-size: 0.92rem; }
+    .contact-item strong { font-size: 0.95rem; }
+
+
+    .about-grid {
+      grid-template-columns: 1.35fr 0.85fr;
+    }
+
+    .map-caption,
+    .map-note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .connection-map {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(200px, 0.82fr) minmax(280px, 1.18fr);
+      column-gap: 132px;
+      min-height: 560px;
+      margin: 18px 0 14px;
+      align-items: start;
+    }
+
+    .connection-column {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 1;
+      min-width: 0;
+    }
+
+    .map-column-title {
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted-2);
+      margin-bottom: 2px;
+    }
+
+    #mapCategories,
+    #mapProjects {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .map-node {
+      display: block;
+      max-width: 100%;
+      padding: 12px 14px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--panel) 82%, transparent);
+      color: var(--muted);
+      transition: var(--transition);
+      backdrop-filter: blur(6px);
+    }
+
+    .map-node strong {
+      display: block;
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.35;
+    }
+
+    .map-node small {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted-2);
+      font-size: 0.78rem;
+      line-height: 1.35;
+    }
+
+    .connection-column.projects .map-node {
+      margin-left: auto;
+      text-align: right;
+    }
+
+    .connection-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: visible;
+      z-index: 0;
+    }
+
+    .map-line {
+      fill: none;
+      stroke: color-mix(in srgb, var(--accent) 20%, transparent);
+      stroke-width: 1.35;
+      opacity: 0.2;
+      transition: opacity var(--transition), stroke var(--transition), stroke-width var(--transition);
+    }
+
+    .connection-map.has-active .map-node {
+      opacity: 0.38;
+    }
+
+    .connection-map.has-active .map-node.is-active {
+      opacity: 1;
+      border-color: var(--line-strong);
+      background: color-mix(in srgb, var(--panel-strong) 86%, transparent);
+      box-shadow: 0 10px 24px color-mix(in srgb, var(--accent) 9%, transparent);
+    }
+
+    .connection-map.has-active .map-line {
+      opacity: 0.06;
+    }
+
+    .connection-map.has-active .map-line.is-active {
+      opacity: 0.98;
+      stroke: color-mix(in srgb, var(--accent) 72%, transparent);
+      stroke-width: 2.5;
+    }
+
+    .footer {
+      padding: 42px 0 60px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.94rem;
+    }
+
+    @media (max-width: 1220px) {
+      .hero-layout,
+      .about-grid,
+      .roadmap-grid,
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-side {
+        justify-items: start;
+      }
+
+      .portrait-shell {
+        min-height: 360px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        min-height: 68px;
+        padding: 10px 0;
+        align-items: flex-start;
+      }
+
+      .nav-right { width: 100%; }
+
+      .hero,
+      main section { padding-top: 24px; }
+
+      .hero-shell,
+      .roadmap-shell,
+      .category,
+      .about-card,
+      .contact-card,
+      .additional-shell { padding: 18px; }
+
+      .quick-grid,
+      .roadmap-grid,
+      .project-grid,
+      .about-grid { grid-template-columns: 1fr; }
+
+      .connection-map {
+        grid-template-columns: 1fr;
+        column-gap: 0;
+        row-gap: 18px;
+        min-height: auto;
+      }
+
+      .connection-svg { display: none; }
+
+      .connection-column.projects .map-node {
+        margin-left: 0;
+        text-align: left;
+      }
+
+      .category-head,
+      .section-head { flex-direction: column; align-items: start; }
+
+      .portrait-shell { min-height: 300px; }
+    }
+  </style>
+</head>
+<body data-theme="dark">
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="#home" aria-label="Go to top">
+        <span class="brand-mark">SV</span>
+        <span>VLSI Portfolio</span>
+      </a>
+      <div class="nav-right">
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="#home">Home</a>
+          <a href="#roadmap">Roadmap</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark and light mode">
+          <span id="themeIcon">☾</span>
+          <span id="themeLabel">Light mode</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap">
+        <article class="panel hero-shell">
+          <div class="hero-layout">
+            <div class="hero-copy">
+              <div class="eyebrow">RTL • Design • Verification • FPGA • Low-Power • Memory</div>
+              <h1>Sudhanvi Vakul<br />Vakulabharanam</h1>
+              <p class="lead">
+                VLSI engineer focused on RTL design and verification, with hands-on experience in building robust digital systems from microarchitecture to validation. My work spans SystemVerilog RTL, CDC/reset-safe design, functional verification, SoC and bus integration, protocol development, FPGA acceleration, and implementation-aware hardware design. Through my portfolio and VLSIVault projects, I aim to build hardware that is not only functionally correct, but also structured, scalable, and engineer-friendly. I am especially interested in roles involving RTL design, design verification, and digital system architecture, where strong fundamentals, disciplined execution, and clear technical storytelling are equally valued.
+              </p>
+              <div class="actions">
+                <a class="btn primary" href="#roadmap">Explore roadmap</a>
+                <a class="btn secondary" href="#projects">View projects</a>
+              </div>
+              <div class="preview-row">
+                <a class="btn ghost" href="resume.pdf" target="_blank" rel="noreferrer">Preview Resume</a>
+              </div>
+            </div>
+
+            <div class="hero-side">
+              <div class="portrait-shell">
+                <div class="portrait" aria-label="Profile photo placeholder">
+                  <img class="portrait-image" src="Me1.png" alt="Profile placeholder" />
+                </div>
+              </div>
+              <div class="quick-grid">
+                <div class="quick-card">
+                  <strong>LinkedIn</strong>
+                  <span><a href="https://www.linkedin.com/in/sudhanvi-vakul-vakulabharanam/" target="_blank" rel="noreferrer">sudhanvi-vakul-vakulabharanam</a></span>
+                </div>
+                <div class="quick-card">
+                  <strong>GitHub</strong>
+                  <span><a href="https://github.com/sudhanvi-vakul" target="_blank" rel="noreferrer">sudhanvi-vakul</a></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="roadmap">
+      <div class="wrap">
+        <div class="section-head">
+          <div><h2>VLSI Design &amp; Verification Roadmap</h2></div>
+          <p>All major VLSI categories are shown here. Categories with current work are highlighted and clickable.</p>
+        </div>
+        <div class="panel roadmap-shell">
+          <div class="roadmap-grid" id="roadmapGrid"></div>
+          <div class="legend">
+            <span><i class="on"></i> category has current portfolio work</span>
+            <span><i class="off"></i> future category</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="wrap">
+        <div class="section-head">
+          <div><h2>Projects by Category</h2></div>
+          <p>VLSIVault tracks are included here, along with related portfolio work from your broader design and acceleration projects.</p>
+        </div>
+        <div class="category-stack" id="projectSections"></div>
+      </div>
+    </section>
+
+    <section id="additional-projects">
+      <div class="wrap">
+        <div class="section-head">
+          <div><h2>Additional Technical Projects</h2></div>
+          <p>These stay visible without weakening the main VLSI roadmap signal.</p>
+        </div>
+        <div class="additional-shell">
+          <div class="project-grid" id="additionalProjects"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap about-grid">
+        <article class="about-card">
+          <div class="section-head" style="margin-bottom: 14px;">
+            <div><h2>Roadmap Connections</h2></div>
+          </div>
+          <p class="map-caption">Hover a roadmap category to trace only the currently visible project names connected to it.</p>
+          <div class="connection-map" id="roadmapConnectionMap">
+            <svg class="connection-svg" id="connectionSvg" aria-hidden="true"></svg>
+            <div class="connection-column">
+              <div class="map-column-title">Roadmap categories</div>
+              <div id="mapCategories"></div>
+            </div>
+            <div class="connection-column projects">
+              <div class="map-column-title">Project names</div>
+              <div id="mapProjects"></div>
+            </div>
+          </div>
+          <p class="map-note">Only projects with <code>hide: false</code> (or no <code>hide</code> field) appear here. When you finish a hidden project, switch its <code>hide</code> value and it will show here automatically.</p>
+        </article>
+
+        <article class="contact-card">
+          <div class="section-head" style="margin-bottom: 14px;">
+            <div><h2>Contact &amp; Links</h2></div>
+          </div>
+          <p>Use these links to reach out, view your profile, or preview your resume.</p>
+          <div class="contact-list">
+            <a class="contact-item" href="mailto:sudhanvivakulv@gmail.com">
+              <div>
+                <strong>Email</strong>
+                <span>sudhanvivakulv@gmail.com</span>
+              </div>
+              <span>Open</span>
+            </a>
+            <a class="contact-item" href="https://www.linkedin.com/in/sudhanvi-vakul-vakulabharanam/" target="_blank" rel="noreferrer">
+              <div>
+                <strong>LinkedIn</strong>
+                <span>Professional profile</span>
+              </div>
+              <span>Open</span>
+            </a>
+            <a class="contact-item" href="https://github.com/sudhanvi-vakul" target="_blank" rel="noreferrer">
+              <div>
+                <strong>GitHub</strong>
+                <span>sudhanvi-vakul</span>
+              </div>
+              <span>Open</span>
+            </a>
+            <a class="contact-item" href="resume.pdf" target="_blank" rel="noreferrer">
+              <div>
+                <strong>Resume</strong>
+                <span>Preview PDF</span>
+              </div>
+              <span>Preview</span>
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">Sudhanvi Vakul • VLSI Portfolio</div>
+  </footer>
+
+  <script>
+    const placeholder = "#placeholder";
+
+    
+    const roadmap = [
+      { id: "rtl-design", label: "RTL Design", phase: "Core Design", summary: "Microarchitecture, datapaths, control logic, and synthesizable RTL." },
+      { id: "cdc-reset", label: "CDC / Reset", phase: "Robustness", summary: "Synchronizers, reset sequencing, and safe multi-clock transfer." },
+      { id: "functional-verification", label: "Functional Verification", phase: "Quality", summary: "Self-checking benches, assertions, randomized testing, and coverage." },
+      { id: "uvm-verification", label: "UVM Verification", phase: "Advanced DV", summary: "UVM agents, scoreboards, RAL flows, and coverage closure." },
+      { id: "processor-architecture", label: "Processor & Architecture", phase: "Compute", summary: "CPUs, pipelines, hazards, timers, interrupts, and mini-SoC evolution." },
+      { id: "communication-interfaces", label: "Communication Interfaces", phase: "Protocols", summary: "UART, SPI, I2C, FIFOs, and peripheral integration." },
+      { id: "soc-integration", label: "SoC / Bus Integration", phase: "Integration", summary: "AXI/APB, MMIO, subsystem composition, and board-level integration." },
+      { id: "low-power-design", label: "Low-Power Design", phase: "Power", summary: "Clock gating, retention, power domains, leakage-aware design." },
+      { id: "physical-design", label: "Physical Design", phase: "Backend", summary: "RTL-to-GDS, floorplanning, CTS, signoff evidence, and report reading." },
+      { id: "timing-sta", label: "Timing / STA / Signoff", phase: "Closure", summary: "Constraints, STA, timing trade-offs, and signoff thinking." },
+      { id: "memory-systems", label: "Memory Systems", phase: "Memory", summary: "SRAM design, stability analysis, and memory-aware implementation." },
+      { id: "hardware-acceleration", label: "Hardware Acceleration & FPGA", phase: "Acceleration", summary: "HLS, FPGA inference, accelerator microarchitecture, and QoR." },
+      { id: "dft-test", label: "DFT & Production Test", phase: "Test", summary: "Scan, JTAG, BIST, ATPG concepts, and production-test awareness." }
+    ];
+
+    const sections = [
+      {
+        id: "rtl-design",
+        title: "RTL Design",
+        description: "RTL-first growth track covering foundational flow discipline, CDC-safe design, NSoC bring-up, and the DRD series.",
+        projects: [
+          { title: "RTL CI/CD Toolkit", status: "Built", summary: "Repeatable repo skeleton, smoke/regression entry points, wave and log capture, and evidence packaging for every later RTL project.", tags: ["Workflow", "Automation", "Evidence"], details: "https://github.com/sudhanvi-vakul/rtl-productivity-cicd-toolkit" },
+          { title: "RTL CDC Reset-Safe Multi-Clock Data Mover", status: "Built", summary: "Async FIFO, synchronizers, reset release, clock-ratio stress, and assertion-backed data ordering checks.", tags: ["CDC", "Reset", "Async FIFO"], details: "https://github.com/sudhanvi-vakul/rtl-cdc-reset-datamover" },
+          { title: "NSoC Base Platform", status: "Starting", hide: true, summary: "AXI-Lite control plane, timer/IRQ path, BRAM-backed window, and software-visible register semantics.", tags: ["NSoC", "AXI-Lite", "MMIO"], details: "#placeholder" },
+          { title: "Low Power Layer on the NSoC Base Platform", status: "Planned", hide: true, summary: "Clock-enable policy, idle-state control, retention planning, and wake-up correctness applied to the NSoC base.", tags: ["NSoC", "Low Power"], details: "#placeholder" },
+          { title: "Accelerator-Ready NSoC with UA-Lite", status: "Planned", hide: true, summary: "Descriptor-driven command path, DMA-style movement, scratchpad buffering, telemetry counters, and a lightweight UA-Lite block.", tags: ["UA-Lite", "NSoC", "Planned"], details: "#placeholder" },
+          { title: "Protocol Expansion on the NSoC", status: "Planned", hide: true, summary: "Protocol widening layered onto the stable NSoC base.", tags: ["NSoC", "Protocols", "Planned"], details: "#placeholder" },
+          { title: "Timing & Sign-off Awareness Pass", status: "Planned", hide: true, summary: "Constraint cleanup, path review, QoR study, and timing-driven RTL refinements.", tags: ["Timing", "QoR", "Planned"], details: "#placeholder" },
+          { title: "Parametric ALU with Self-Checking Testbench", status: "Built", summary: "Beginner VLSIVault RTL project focused on combinational arithmetic, clean flag behavior, and simple self-checking validation.", tags: ["VLSIVault", "RTL", "ALU"], details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/digital_rtl/DRD1_parametric_alu" },
+          { title: "Valid/Ready pipeline register slice + backpressure demos", status: "Planned", hide: true, summary: "Intermediate register-slice project for clean pipeline handshaking and flow control.", tags: ["VLSIVault", "RTL", "Handshake"], details: "#placeholder" },
+          { title: "Microcoded controller driving a datapath", status: "Planned", hide: true, summary: "Controller + datapath decomposition project with ROM-driven sequencing.", tags: ["VLSIVault", "Datapath", "Control"], details: "#placeholder" },
+          { title: "Multi-stage pipeline with hazards", status: "Planned", hide: true, summary: "Pipeline project covering stall, flush, hazard, and bypass behavior.", tags: ["VLSIVault", "Pipeline", "Hazards"], details: "#placeholder" },
+          { title: "Scoreboard-based in-order issue", status: "Planned", hide: true, summary: "Scheduling and dependency-handling project for issue/replay behavior.", tags: ["VLSIVault", "Issue Logic", "Scheduling"], details: "#placeholder" },
+          { title: "OoO core block subset", status: "Planned", hide: true, summary: "Rename, ROB, and commit-oriented microarchitecture ideas in a capstone-style block.", tags: ["VLSIVault", "OoO", "Capstone"], details: "#placeholder" }
+        ]
+      },
+      {
+        id: "cdc-reset",
+        title: "CDC / Reset",
+        description: "Cross-domain correctness, reset release discipline, and waveform-backed evidence for asynchronous behavior.",
+        projects: [
+          { title: "RTL CDC Reset-Safe Multi-Clock Data Mover", status: "Built", summary: "The same cornerstone FIFO project appears here because it directly proves synchronized pointers, reset-safe release, and safe cross-domain transfer.", tags: ["CDC", "Reset", "Async FIFO"], details: "https://github.com/sudhanvi-vakul/rtl-cdc-reset-datamover" }
+        ]
+      },
+      {
+        id: "functional-verification",
+        title: "Functional Verification",
+        description: "Self-checking testbenches, assertion thinking, reusable cocotb infrastructure, and regression-focused DV habits.",
+        projects: [
+          { title: "RTL CDC Reset-Safe Multi-Clock Data Mover", status: "Built", summary: "Waveform evidence around empty/full behavior, ordering guarantees, and reset entry/exit across clock domains.", tags: ["Waveforms", "Assertions", "Flags"], details: "https://github.com/sudhanvi-vakul/rtl-cdc-reset-datamover" },
+          { title: "ALU/FIFO with Self-Checking and Randomized Testbench", status: "Built", summary: "Foundational testbench project for deterministic checking and randomized stimulus.", tags: ["VLSIVault", "cocotb", "Assertions"], details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/fv_cocotb/FV1_self_checking_alu_fifo" },
+          { title: "Reusable cocotb Verification Kit", status: "Built", summary: "Reusable driver/monitor/scoreboard template for faster verification bring-up.", tags: ["VLSIVault", "cocotb", "Reusable"], details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/fv_cocotb/FV2_reusable_cocotb_kit" },
+          { title: "Regression & Coverage Dashboard Builder", status: "Built", summary: "Metrics and trend tracking around seeds, results, and coverage evolution.", tags: ["VLSIVault", "Coverage", "Regression"], details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/fv_cocotb/FV3_regression_coverage_dashboard" },
+          { title: "SVA Micro-Library for Handshakes, FIFOs, and Arbiters", status: "Planned", hide: true, summary: "Assertion-centric library project for reusable protocol and structure checks.", tags: ["VLSIVault", "SVA", "Planned"], details: "#placeholder" },
+          { title: "Formal Verification Clinic", status: "Planned", hide: true, summary: "Proof, cover, and counterexample-oriented formal exploration track.", tags: ["VLSIVault", "Formal", "Planned"], details: "#placeholder" },
+          { title: "Protocol Fuzzer + Coverage Closure Report", status: "Planned", hide: true, summary: "Randomized fault and stall exploration plus closure-style reporting.", tags: ["VLSIVault", "Protocol Fuzzing", "Planned"], details: "#placeholder" },
+          { title: "SoC Subsystem Verification Platform", status: "Planned", hide: true, summary: "Capstone multi-agent cocotb platform with CI and optional formal hooks.", tags: ["VLSIVault", "SoC Verification", "Capstone"], details: "#placeholder" }
+        ]
+      },
+      {
+        id: "uvm-verification",
+        title: "UVM Verification",
+        description: "UVM environments, agents, scoreboards, and coverage-driven verification progression.",
+        projects: [
+          { title: "UVM Hello World on tiny ALU DUT", status: "Built", summary: "Sequence item, driver, and monitor basics on a compact DUT.", tags: ["VLSIVault", "UVM", "ALU"], details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/fv_uvm/FVU1_uvm_hello_world_alu" },
+          { title: "APB UVM agent and reg read/write tests", status: "Built", summary: "APB agent work with sequencer, driver, and monitor architecture.", tags: ["VLSIVault", "APB", "UVM"], details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/fv_uvm/FVU2_apb_uvm_agent" },
+          { title: "Scoreboard and functional coverage for APB reg behavior", status: "Starting", hide: true, summary: "Coverage-driven APB behavior checking and scoreboard refinement.", tags: ["VLSIVault", "Coverage", "APB"], details: "#placeholder" },
+          { title: "UART UVM agent and error injection", status: "Planned", hide: true, summary: "UART UVM environment with parity, framing, and overrun scenarios.", tags: ["VLSIVault", "UART", "Planned"], details: "#placeholder" },
+          { title: "AXI-Lite UVM environment", status: "Planned", hide: true, summary: "AXI-Lite BFM, scoreboard, and backpressure cases.", tags: ["VLSIVault", "AXI-Lite", "Planned"], details: "#placeholder" },
+          { title: "Multi-agent UVM env: AXI-Lite + UART + IRQ", status: "Planned", hide: true, summary: "Multi-interface environment with coverage closure focus.", tags: ["VLSIVault", "UVM", "Capstone"], details: "#placeholder" },
+          { title: "UVM RAL + ABV + Formal + CI platform", status: "Planned", hide: true, summary: "Platform combining RAL, assertions, formal, and CI-driven reporting.", tags: ["VLSIVault", "RAL", "Capstone+"], details: "#placeholder" },
+          { title: "Reserved future UVM expansion", status: "Planned", hide: true, summary: "Placeholder for the next VLSIVault UVM expansion step.", tags: ["VLSIVault", "UVM", "Future"], details: "#placeholder" }
+        ]
+      },
+      {
+        id: "processor-architecture",
+        title: "Processor & Architecture",
+        description: "CPU build-out, pipeline control, interrupts, timers, MMIO, and mini-SoC evolution.",
+        projects: [
+          { title: "Tiny single-cycle CPU + assembler script", status: "Built", summary: "Beginner processor build focused on ISA execution and simple tool support.", tags: ["VLSIVault", "CPU", "Single-cycle"], details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/processor_arch/PA1_toy_cpu_single_cycle" },
+          { title: "5-stage pipeline + hazards", status: "Built", summary: "Pipeline control work including stall, flush, and forwarding behavior.", tags: ["VLSIVault", "Pipeline", "Hazards"], details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/processor_arch/PA2_5stage_pipeline" },
+          { title: "Interrupt controller + timer + MMIO integration", status: "Starting", hide: true, summary: "Current architecture work around interrupts, timers, and memory-mapped control.", tags: ["VLSIVault", "MMIO", "Interrupts"], details: "#placeholder" },
+          { title: "Mini-SoC: CPU + bus + UART + RAM + ROM boot", status: "Planned", hide: true, summary: "Mini-SoC composition project with boot flow and integrated peripherals.", tags: ["VLSIVault", "Mini-SoC", "Planned"], details: "#placeholder" },
+          { title: "Cache + performance counters + benchmarks", status: "Planned", hide: true, summary: "Performance-observability and memory-hierarchy expansion step.", tags: ["VLSIVault", "Cache", "Planned"], details: "#placeholder" },
+          { title: "RISC-V subset core + run tiny C", status: "Planned", hide: true, summary: "Capstone RISC-V subset core project with software bring-up goals.", tags: ["VLSIVault", "RISC-V", "Capstone"], details: "#placeholder" },
+          { title: "NSoC Base Platform", status: "Starting", hide: true, summary: "Processor-adjacent NSoC base with AXI-Lite control, timer/IRQ path, and BRAM-backed state window.", tags: ["NSoC", "AXI-Lite", "Starting"], details: "#placeholder" }
+        ]
+      },
+      {
+        id: "communication-interfaces",
+        title: "Communication Interfaces",
+        description: "UART, SPI, I2C, FIFOs, and broader peripheral/controller integration.",
+        projects: [
+          { title: "UART TX/RX + baud gen + loopback tests", status: "Planned", hide: true, summary: "Foundational UART implementation with loopback and testbench checks.", tags: ["VLSIVault", "UART", "Planned"], details: "#placeholder" },
+          { title: "SPI master + SPI flash read model", status: "Planned", hide: true, summary: "Intermediate SPI controller and flash-interaction project.", tags: ["VLSIVault", "SPI", "Planned"], details: "#placeholder" },
+          { title: "I2C master + EEPROM model + NACK/timeout handling", status: "Planned", hide: true, summary: "I2C control logic with realistic device response and error handling.", tags: ["VLSIVault", "I2C", "Planned"], details: "#placeholder" },
+          { title: "UART with FIFOs + flow control + overflow/underflow tests", status: "Planned", hide: true, summary: "Advanced UART subsystem work with buffering and robustness checks.", tags: ["VLSIVault", "UART", "Advanced"], details: "#placeholder" },
+          { title: "Multi-protocol peripheral hub behind MMIO", status: "Planned", hide: true, summary: "Integration of UART, SPI, and I2C into one mapped subsystem.", tags: ["VLSIVault", "MMIO", "Planned"], details: "#placeholder" },
+          { title: "Protocol fuzzing: randomized stalls/errors + coverage", status: "Planned", hide: true, summary: "Capstone protocol verification and error-stress project.", tags: ["VLSIVault", "Coverage", "Capstone"], details: "#placeholder" },
+          { title: "UART-to-Ethernet Bridge on KC705", status: "Built", summary: "Bidirectional UART-to-Ethernet bridge with buffering, CDC-safe handoff, STA, and FPGA validation.", tags: ["Verilog RTL", "Ethernet", "KC705"], details: "#placeholder" },
+          { title: "Protocol Expansion on the NSoC", status: "Planned", hide: true, summary: "GPIO, PWM, I2C, SPI, and later Ethernet added one by one after the NSoC base stabilizes.", tags: ["Protocols", "NSoC", "Planned"], details: "#placeholder" }
+        ]
+      },
+      {
+        id: "soc-integration",
+        title: "SoC / Bus Integration",
+        description: "AXI/APB composition, MMIO, timers, interrupts, and platform-level subsystem integration.",
+        projects: [
+          { title: "NSoC Base Platform", status: "Starting", hide: true, summary: "AXI-Lite control, timer/IRQ path, BRAM-backed storage, and clean software-visible status behavior.", tags: ["NSoC", "AXI-Lite", "MMIO"], details: "#placeholder" },
+          { title: "Interrupt controller + timer + MMIO integration", status: "Starting", hide: true, summary: "Processor-side subsystem integration aligned with the broader SoC roadmap.", tags: ["VLSIVault", "MMIO", "Interrupts"], details: "#placeholder" },
+          { title: "Mini-SoC: CPU + bus + UART + RAM + ROM boot", status: "Planned", hide: true, summary: "Next staged build for a more cohesive SoC-level portfolio block.", tags: ["VLSIVault", "Mini-SoC", "Planned"], details: "#placeholder" },
+          { title: "Protocol Expansion on the NSoC", status: "Planned", hide: true, summary: "Protocol widening layered onto the stable NSoC base.", tags: ["NSoC", "Protocols", "Planned"], details: "#placeholder" }
+        ]
+      },
+      {
+        id: "low-power-design",
+        title: "Low-Power Design",
+        description: "Clock gating, retention, idle-state control, power-aware architecture, and low-power memory work.",
+        projects: [
+          { title: "Clock gating intro + checks", status: "Built", summary: "Foundational glitch-free gating and enable-behavior project.", tags: ["VLSIVault", "Clock Gating", "Built"], details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/low_power/LPD1_clock_gating_intro" },
+          { title: "Sleep/idle controller FSM + wake sources", status: "Planned", hide: true, summary: "Power-state controller with wake-event handling.", tags: ["VLSIVault", "FSM", "Planned"], details: "#placeholder" },
+          { title: "Retention register file + save/restore sequencing", status: "Planned", hide: true, summary: "Retention-aware state preservation and restoration project.", tags: ["VLSIVault", "Retention", "Planned"], details: "#placeholder" },
+          { title: "Multi-mode clocks + safe switching protocol", status: "Planned", hide: true, summary: "Clock-divider and mux project with safe dynamic mode switching.", tags: ["VLSIVault", "Clocking", "Planned"], details: "#placeholder" },
+          { title: "Power-aware microarchitecture", status: "Planned", hide: true, summary: "Idle detection and per-domain gating architecture study.", tags: ["VLSIVault", "Power Domains", "Planned"], details: "#placeholder" },
+          { title: "Low-Power 8-Input AND Gate Using Dual-Vt Domino Logic", status: "Built", hide: false, summary: "Low-power transistor-level design project analyzing standard domino versus dual-Vt domino logic for an 8-input AND gate, emphasizing leakage reduction and performance tradeoffs.", tags: ["Low Power", "Dual-Vt", "Domino Logic", "Cadence"], details: "8 input AND Gate.pdf"},
+          { title: "UPF-like power intent doc + assertion enforcement", status: "Planned", hide: true, summary: "Power-intent documentation and rule-check thinking in a portable flow.", tags: ["VLSIVault", "Power Intent", "Planned"], details: "#placeholder" },
+          { title: "Multi-Domain Power Gating + Retention + Verification", status: "Planned", hide: true, summary: "Capstone SoC subsystem with multi-domain power and verification strategy.", tags: ["VLSIVault", "Capstone+", "Planned"], details: "#placeholder" },
+          { title: "Energy-Aware Microarchitecture with DVFS", status: "Planned", hide: true, summary: "Low-power microarchitecture with DVFS, modeling, and analysis.", tags: ["VLSIVault", "DVFS", "Planned"], details: "#placeholder" },
+          { title: "Low Power Layer on the NSoC Base Platform", status: "Planned", hide: true, summary: "Clock-enable policy, idle-state control, retention planning, and wake-up correctness applied to the NSoC base.", tags: ["NSoC", "Low Power", "Planned"], details: "#placeholder" },
+          { title: "Low-Power 10T SRAM Using Sleep Transistors and Drain Gating", status: "Built", summary: "10T SRAM bitcell work focused on leakage, delay, retention, and stability trade-offs.", tags: ["SRAM", "Virtuoso", "Low Power"], details: "10T SRAM.pdf" }
+        ]
+      },
+      {
+        id: "physical-design",
+        title: "Physical Design",
+        description: "Synthesis, floorplanning, CTS, signoff evidence, and report-reading progression.",
+        projects: [
+          { title: "Constraint-First STA Sprint", status: "Built", summary: "Entry physical-design track project focused on synthesis and timing report reading.", tags: ["VLSIVault", "STA", "Built"], details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/physical_design/PD1_constraint_first_sta_sprint" },
+          { title: "RTL-to-GDS Deep Dive", status: "Planned", hide: true, summary: "OpenLane/OpenROAD run and report-reading exercise.", tags: ["VLSIVault", "OpenLane", "Planned"], details: "#placeholder" },
+          { title: "Floorplan Parameter Sweep Lab", status: "Planned", hide: true, summary: "Utilization and aspect-ratio study against congestion behavior.", tags: ["VLSIVault", "Floorplan", "Planned"], details: "#placeholder" },
+          { title: "Timing Closure Clinic", status: "Planned", hide: true, summary: "Pipelining and constraints iteration with WNS/TNS comparisons.", tags: ["VLSIVault", "Timing Closure", "Planned"], details: "#placeholder" },
+          { title: "CTS Tradeoff Explorer", status: "Planned", hide: true, summary: "Clock-tree tradeoff analysis across skew, insertion delay, and buffering.", tags: ["VLSIVault", "CTS", "Planned"], details: "#placeholder" },
+          { title: "Signoff Evidence Packet Builder", status: "Planned", hide: true, summary: "DRC/LVS and inspection-oriented evidence packaging project.", tags: ["VLSIVault", "Signoff", "Planned"], details: "#placeholder" },
+          { title: "Tapeout-Style Release Candidate Builder", status: "Planned", hide: true, summary: "Release-candidate flow with extraction, PDN, and signoff awareness.", tags: ["VLSIVault", "Tapeout Style", "Capstone"], details: "#placeholder" }
+        ]
+      },
+      {
+        id: "timing-sta",
+        title: "Timing / STA / Signoff",
+        description: "Constraint writing, path review, timing cleanup, and implementation-aware report reading.",
+        projects: [
+          { title: "Constraint-First STA Sprint", status: "Built", summary: "Included here as well because it directly demonstrates constraint and timing analysis work.", tags: ["VLSIVault", "STA", "Timing"], details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/timing_sta/FV1_constraint_first_sta_sprint" },
+          { title: "UART-to-Ethernet Bridge on KC705", status: "Built", summary: "Applied SDC constraints, STA, and timing closure across multiple baud rates and traffic conditions.", tags: ["STA", "Timing Closure", "Board Bring-up"], details: "UART-to-Ethernet two-way communication.pdf" },
+          { title: "Timing & Sign-off Awareness Pass", status: "Planned", hide: true, summary: "Constraint cleanup, path review, QoR study, and timing-driven RTL refinements.", tags: ["Timing", "QoR", "Planned"], details: "#placeholder" }
+        ]
+      },
+      {
+        id: "memory-systems",
+        title: "Memory Systems",
+        description: "SRAM design, stability analysis, parasitics, and memory-aware implementation work.",
+        projects: [
+          { title: "Implementation of 6T SRAM Cell using ASAP7 7nm Technology", status: "Built", summary: "6T SRAM bitcell implementation and analysis with parasitics and read/write/hold robustness evaluation.", tags: ["ASAP7", "SRAM", "Memory"], details: "6T SRAM.pdf" },
+          { title: "Low-Power 10T SRAM Using Sleep Transistors and Drain Gating", status: "Built", summary: "Low-power memory design with PVT characterization and comparative stability trade-offs.", tags: ["10T SRAM", "Low Power", "Memory"], details: "10T SRAM.pdf" }
+        ]
+      },
+      {
+        id: "hardware-acceleration",
+        title: "Hardware Acceleration & FPGA",
+        description: "Accelerator microarchitecture, HLS, FPGA inference, and performance-oriented architecture studies.",
+        projects: [
+          { title: "Accelerator-Ready NSoC with UA-Lite", status: "Planned", hide: true, summary: "Descriptor-driven command path, DMA-style movement, scratchpad buffering, telemetry counters, and a lightweight UA-Lite block.", tags: ["UA-Lite", "NSoC", "Planned"], details: "#placeholder" },
+          { title: "FPGA-based Systolic Array Hardware Accelerator Design of VGG11", status: "Built", summary: "Vitis HLS accelerator with pipelining, unrolling, tiling, AXI interfaces, and QoR analysis.", tags: ["HLS", "FPGA", "VGG11"], details: "https://github.com/sudhanvi-vakul/vgg11-fpga-accelerator" },
+          { title: "System Exploration — Swish vs ReLU in Apache TVM", status: "Built", summary: "Compiler and performance study on activation-function cost in a hardware-aware stack.", tags: ["TVM", "LLVM", "Benchmarking"], details: "https://github.com/sudhanvi-vakul/system-exploration" }
+        ]
+      },
+      {
+        id: "dft-test",
+        title: "DFT & Production Test",
+        description: "Future scan, JTAG, BIST, and ATPG-oriented work once the core RTL and SoC platform mature.",
+        projects: [
+          { title: "Scan chain + JTAG bring-up lab", status: "Planned", hide: true, summary: "Future starter project for scan stitching, access, and test visibility concepts.", tags: ["DFT", "JTAG", "Future"], details: "#placeholder" }
+        ]
+      }
+    ];
+
+    const additionalProjects = [
+      { title: "Object Detection Using DINO-DETR", status: "Built", summary: "Transformer-based object-detection benchmarking across DAB-DETR, DN-DETR, and DINO-DETR.", tags: ["PyTorch", "DINO-DETR", "Computer Vision"], details: "DAB-DN-Dino-DETR.pdf" },
+      { title: "Image Classification Using YOLOv2 on ImageNet-1K", status: "Built", summary: "GPU training and evaluation pipeline analyzing accuracy vs compute-latency trade-offs.", tags: ["YOLOv2", "ImageNet", "GPU"] },
+      { title: "Smartphone Controlled Arduino Bluetooth Robot Car", status: "Built", summary: "Embedded control stack using UART Bluetooth, PWM motor control, and obstacle-avoidance behavior.", tags: ["Arduino", "Bluetooth", "PWM"]},
+      { title: "Through-Wall Object Detection Using RADAR", status: "Built", summary: "MATLAB radar study covering attenuation, scattering, and Doppler behavior under obstruction.", tags: ["MATLAB", "Radar", "Signal Processing"] },
+      { title: "Extraction of Audio from Visual Information", status: "Study Project", hide: true, summary: "Research-replication style study on audio recovery from subtle visual vibration cues.", tags: ["Computer Vision", "Audio", "Research"]}
+    ];
+
+    const connectionGraph = (() => {
+      const makeId = (text) =>
+        text
+          .toLowerCase()
+          .replace(/&/g, "and")
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-+|-+$/g, "");
+
+      const categories = roadmap.map(node => ({ id: node.id, label: node.label }));
+      const projectMap = new Map();
+      const links = [];
+
+      sections.forEach(section => {
+        (section.projects || []).forEach(project => {
+          const key = project.title;
+          let entry = projectMap.get(key);
+
+          if (!entry) {
+            entry = {
+              id: makeId(project.title),
+              label: project.title,
+              hide: !!project.hide
+            };
+            projectMap.set(key, entry);
+          } else {
+            entry.hide = entry.hide && !!project.hide;
+          }
+
+          links.push([section.id, entry.id]);
+        });
+      });
+
+      return {
+        categories,
+        projects: Array.from(projectMap.values()),
+        links
+      };
+    })();
+
+    const visibleSections = sections.map(section => ({
+
+      ...section,
+      projects: (section.projects || []).filter(project => !project.hide)
+    }));
+
+    const activeSections = visibleSections.filter(section => section.projects && section.projects.length > 0);
+    const visibleAdditionalProjects = additionalProjects.filter(project => !project.hide);
+
+    const roadmapGrid = document.getElementById("roadmapGrid");
+    roadmap.forEach(node => {
+      const section = visibleSections.find(section => section.id === node.id);
+      const hasProjects = !!(section && section.projects.length > 0);
+      const el = document.createElement(hasProjects ? "button" : "div");
+      el.className = `roadmap-card ${hasProjects ? "active" : "inactive"}`;
+      if (hasProjects) {
+        el.type = "button";
+        el.addEventListener("click", () => {
+          document.getElementById(node.id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      }
+      el.innerHTML = `
+        <div class="phase">${node.phase}</div>
+        <strong>${node.label}</strong>
+        <span>${node.summary}</span>
+        <div class="roadmap-badge">${hasProjects ? `${section.projects.length} project${section.projects.length > 1 ? "s" : ""}` : "future category"}</div>
+      `;
+      roadmapGrid.appendChild(el);
+    });
+
+    function buildProjectCard(project) {
+      return `
+        <article class="project-card">
+          <div class="project-top">
+            <h4 class="project-title">${project.title}</h4>
+            <span class="status">${project.status}</span>
+          </div>
+          <p class="project-desc">${project.summary}</p>
+          <div class="chip-row">
+            ${project.tags.map(tag => `<span class="chip">${tag}</span>`).join("")}
+          </div>
+          <div class="project-links">
+            <a class="btn ghost" href="${project.details || placeholder}" target="_blank" rel="noreferrer">Details</a>
+          </div>
+        </article>
+      `;
+    }
+
+    const projectSections = document.getElementById("projectSections");
+    activeSections.forEach(section => {
+      const wrapper = document.createElement("section");
+      wrapper.className = "panel category";
+      wrapper.id = section.id;
+      wrapper.innerHTML = `
+        <div class="category-head">
+          <div>
+            <h3>${section.title}</h3>
+            <p>${section.description}</p>
+          </div>
+          <div class="count-pill">${section.projects.length} project${section.projects.length > 1 ? "s" : ""}</div>
+        </div>
+        <div class="project-grid">
+          ${section.projects.map(buildProjectCard).join("")}
+        </div>
+      `;
+      projectSections.appendChild(wrapper);
+    });
+
+    const additionalRoot = document.getElementById("additionalProjects");
+    additionalRoot.innerHTML = visibleAdditionalProjects.map(buildProjectCard).join("");
+
+    function renderConnectionMap() {
+      const map = document.getElementById("roadmapConnectionMap");
+      const categoriesRoot = document.getElementById("mapCategories");
+      const projectsRoot = document.getElementById("mapProjects");
+      if (!map || !categoriesRoot || !projectsRoot) return;
+
+      categoriesRoot.innerHTML = connectionGraph.categories.map(item => `
+        <div class="map-node map-node-category" data-kind="category" data-id="${item.id}">
+          <strong>${item.label}</strong>
+        </div>
+      `).join("");
+
+      const visibleConnectionProjects = connectionGraph.projects.filter(item => !item.hide);
+
+      projectsRoot.innerHTML = visibleConnectionProjects.map(item => `
+        <div class="map-node map-node-project" data-kind="project" data-id="${item.id}">
+          <strong>${item.label}</strong>
+        </div>
+      `).join("");
+
+      categoriesRoot.querySelectorAll(".map-node-category").forEach(node => {
+        node.addEventListener("mouseenter", () => updateConnectionHighlight({ category: node.dataset.id }));
+        node.addEventListener("mouseleave", () => updateConnectionHighlight());
+      });
+
+      projectsRoot.querySelectorAll(".map-node-project").forEach(node => {
+        node.addEventListener("mouseenter", () => updateConnectionHighlight({ project: node.dataset.id }));
+        node.addEventListener("mouseleave", () => updateConnectionHighlight());
+      });
+
+      requestAnimationFrame(drawConnectionLines);
+    }
+
+    function drawConnectionLines() {
+      const map = document.getElementById("roadmapConnectionMap");
+      const svg = document.getElementById("connectionSvg");
+      if (!map || !svg || window.innerWidth < 1120) {
+        if (svg) svg.innerHTML = "";
+        return;
+      }
+
+      const mapRect = map.getBoundingClientRect();
+      const width = Math.max(mapRect.width, 1);
+      const height = Math.max(mapRect.height, 1);
+      svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+      svg.setAttribute("preserveAspectRatio", "none");
+
+      const paths = connectionGraph.links.map(([from, to]) => {
+        const fromEl = map.querySelector(`.map-node-category[data-id="${from}"]`);
+        const toEl = map.querySelector(`.map-node-project[data-id="${to}"]`);
+        if (!fromEl || !toEl) return "";
+        const fromRect = fromEl.getBoundingClientRect();
+        const toRect = toEl.getBoundingClientRect();
+        const x1 = fromRect.right - mapRect.left;
+        const y1 = fromRect.top - mapRect.top + fromRect.height / 2;
+        const x2 = toRect.left - mapRect.left;
+        const y2 = toRect.top - mapRect.top + toRect.height / 2;
+        const curve = Math.max(42, (x2 - x1) * 0.38);
+        return `<path class="map-line" data-from="${from}" data-to="${to}" d="M ${x1} ${y1} C ${x1 + curve} ${y1}, ${x2 - curve} ${y2}, ${x2} ${y2}" />`;
+      }).join("");
+
+      svg.innerHTML = paths;
+    }
+
+    function updateConnectionHighlight({ category = null, project = null } = {}) {
+      const map = document.getElementById("roadmapConnectionMap");
+      if (!map) return;
+      const hasActive = !!(category || project);
+      map.classList.toggle("has-active", hasActive);
+
+      map.querySelectorAll(".map-line").forEach(line => {
+        const match = (category && line.dataset.from === category) || (project && line.dataset.to === project);
+        line.classList.toggle("is-active", !!match);
+      });
+
+      map.querySelectorAll(".map-node").forEach(node => {
+        const nodeId = node.dataset.id;
+        const kind = node.dataset.kind;
+        const connected = connectionGraph.links.some(([from, to]) => (
+          category && ((kind === "category" && nodeId === category) || (kind === "project" && from === category && to === nodeId))
+        ) || (
+          project && ((kind === "project" && nodeId === project) || (kind === "category" && to === project && from === nodeId))
+        ));
+        node.classList.toggle("is-active", hasActive && connected);
+      });
+    }
+
+    renderConnectionMap();
+    window.addEventListener("resize", drawConnectionLines);
+
+    const themeToggle = document.getElementById("themeToggle");
+    const themeLabel = document.getElementById("themeLabel");
+    const themeIcon = document.getElementById("themeIcon");
+    const savedTheme = localStorage.getItem("portfolio-theme");
+    const prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+    const initialTheme = savedTheme || (prefersLight ? "light" : "dark");
+
+    function applyTheme(theme) {
+      document.body.setAttribute("data-theme", theme);
+      themeLabel.textContent = theme === "dark" ? "Light mode" : "Dark mode";
+      themeIcon.textContent = theme === "dark" ? "☾" : "☀";
+      localStorage.setItem("portfolio-theme", theme);
+    }
+
+    applyTheme(initialTheme);
+
+    themeToggle.addEventListener("click", () => {
+      const next = document.body.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      applyTheme(next);
+    });
+  </script>
+</body>
+</html>
