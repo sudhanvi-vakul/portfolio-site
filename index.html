@@ -717,7 +717,7 @@
       position: relative;
       display: grid;
       grid-template-columns: minmax(200px, 0.82fr) minmax(280px, 1.18fr);
-      column-gap: 132px;
+      column-gap: 90px;
       min-height: 560px;
       margin: 18px 0 14px;
       align-items: start;
@@ -749,7 +749,7 @@
     .map-node {
       display: block;
       max-width: 100%;
-      padding: 12px 14px;
+      padding: 8px 10px;
       border-radius: 18px;
       border: 1px solid var(--line);
       background: color-mix(in srgb, var(--panel) 82%, transparent);
@@ -776,6 +776,10 @@
     .connection-column.projects .map-node {
       margin-left: auto;
       text-align: right;
+    }
+
+    .connection-column.projects .map-node strong {
+      font-size: 0.72rem;
     }
 
     .connection-svg {
@@ -1012,12 +1016,19 @@
           </div>
           <p>Use these links to reach out, view your profile, or preview your resume.</p>
           <div class="contact-list">
-            <a class="contact-item" href="mailto:sudhanvivakulv@gmail.com">
+            <a class="contact-item" href="https://mail.google.com/mail/?view=cm&fs=1&to=sudhanvivakulv@gmail.com" target="_blank" rel="noreferrer">
               <div>
                 <strong>Email</strong>
                 <span>sudhanvivakulv@gmail.com</span>
               </div>
               <span>Open</span>
+            </a>
+              <a class="contact-item" href="tel:+13129344267">
+             <div>
+               <strong>Mobile</strong>
+               <span>+1 312-934-4267</span>
+             </div>
+               <span>Call</span>
             </a>
             <a class="contact-item" href="https://www.linkedin.com/in/sudhanvi-vakul-vakulabharanam/" target="_blank" rel="noreferrer">
               <div>
@@ -1054,199 +1065,775 @@
     const placeholder = "#placeholder";
 
     
-    const roadmap = [
-      { id: "rtl-design", label: "RTL Design", phase: "Core Design", summary: "Microarchitecture, datapaths, control logic, and synthesizable RTL." },
-      { id: "cdc-reset", label: "CDC / Reset", phase: "Robustness", summary: "Synchronizers, reset sequencing, and safe multi-clock transfer." },
-      { id: "functional-verification", label: "Functional Verification", phase: "Quality", summary: "Self-checking benches, assertions, randomized testing, and coverage." },
-      { id: "uvm-verification", label: "UVM Verification", phase: "Advanced DV", summary: "UVM agents, scoreboards, RAL flows, and coverage closure." },
-      { id: "processor-architecture", label: "Processor & Architecture", phase: "Compute", summary: "CPUs, pipelines, hazards, timers, interrupts, and mini-SoC evolution." },
-      { id: "communication-interfaces", label: "Communication Interfaces", phase: "Protocols", summary: "UART, SPI, I2C, FIFOs, and peripheral integration." },
-      { id: "soc-integration", label: "SoC / Bus Integration", phase: "Integration", summary: "AXI/APB, MMIO, subsystem composition, and board-level integration." },
-      { id: "low-power-design", label: "Low-Power Design", phase: "Power", summary: "Clock gating, retention, power domains, leakage-aware design." },
-      { id: "physical-design", label: "Physical Design", phase: "Backend", summary: "RTL-to-GDS, floorplanning, CTS, signoff evidence, and report reading." },
-      { id: "timing-sta", label: "Timing / STA / Signoff", phase: "Closure", summary: "Constraints, STA, timing trade-offs, and signoff thinking." },
-      { id: "memory-systems", label: "Memory Systems", phase: "Memory", summary: "SRAM design, stability analysis, and memory-aware implementation." },
-      { id: "hardware-acceleration", label: "Hardware Acceleration & FPGA", phase: "Acceleration", summary: "HLS, FPGA inference, accelerator microarchitecture, and QoR." },
-      { id: "dft-test", label: "DFT & Production Test", phase: "Test", summary: "Scan, JTAG, BIST, ATPG concepts, and production-test awareness." }
-    ];
+const roadmap = [
+  {
+    id: "rtl-design",
+    label: "RTL Design",
+    phase: "Core Design",
+    summary: "Synthesizable RTL, datapaths, FSMs, control logic, and block-level microarchitecture."
+  },
+  {
+    id: "functional-verification",
+    label: "Functional Verification",
+    phase: "Quality",
+    summary: "Self-checking testbenches, assertions, randomized testing, debug, and coverage-driven validation."
+  },
+  {
+    id: "processor-architecture",
+    label: "Processor & Architecture",
+    phase: "Compute",
+    summary: "CPU design, pipelining, hazards, control flow, timers, interrupts, and subsystem evolution."
+  },
+  {
+    id: "communication-interfaces",
+    label: "Communication Interfaces",
+    phase: "Protocols",
+    summary: "UART, SPI, I2C, FIFOs, protocol behavior, and peripheral-level integration."
+  },
+  {
+    id: "soc-integration",
+    label: "SoC / Bus Integration",
+    phase: "Integration",
+    summary: "AXI/APB, MMIO, register maps, subsystem composition, and SoC-style integration."
+  },
+  {
+    id: "low-power-design",
+    label: "Low-Power Design",
+    phase: "Power",
+    summary: "Clock gating, retention concepts, power intent, and leakage-aware digital design."
+  },
+  {
+    id: "physical-design",
+    label: "Physical Design",
+    phase: "Backend",
+    summary: "RTL-to-GDS flow, floorplanning, placement, CTS, routing, and implementation analysis."
+  },
+  {
+    id: "timing-sta",
+    label: "Timing / STA / Signoff",
+    phase: "Closure",
+    summary: "Constraints, timing analysis, setup/hold closure, report reading, and signoff thinking."
+  },
+  {
+    id: "memory-systems",
+    label: "Memory Systems",
+    phase: "Memory",
+    summary: "SRAM-oriented design, memory integration, stability awareness, and memory-centric implementation."
+  },
+  {
+    id: "hardware-acceleration",
+    label: "Hardware Acceleration & FPGA",
+    phase: "Acceleration",
+    summary: "FPGA prototyping, accelerator microarchitecture, inference pipelines, and QoR-focused design."
+  },
+  {
+    id: "dft-test",
+    label: "DFT & Production Test",
+    phase: "Test",
+    summary: "Scan, JTAG, BIST, ATPG basics, and production-test awareness for digital systems."
+  }
+];
 
     const sections = [
-      {
-        id: "rtl-design",
-        title: "RTL Design",
-        description: "RTL-first growth track covering foundational flow discipline, CDC-safe design, NSoC bring-up, and the DRD series.",
-        projects: [
-          { title: "RTL CI/CD Toolkit", status: "Built", summary: "Repeatable repo skeleton, smoke/regression entry points, wave and log capture, and evidence packaging for every later RTL project.", tags: ["Workflow", "Automation", "Evidence"], details: "https://github.com/sudhanvi-vakul/rtl-productivity-cicd-toolkit" },
-          { title: "RTL CDC Reset-Safe Multi-Clock Data Mover", status: "Built", summary: "Async FIFO, synchronizers, reset release, clock-ratio stress, and assertion-backed data ordering checks.", tags: ["CDC", "Reset", "Async FIFO"], details: "https://github.com/sudhanvi-vakul/rtl-cdc-reset-datamover" },
-          { title: "NSoC Base Platform", status: "Starting", hide: true, summary: "AXI-Lite control plane, timer/IRQ path, BRAM-backed window, and software-visible register semantics.", tags: ["NSoC", "AXI-Lite", "MMIO"], details: "#placeholder" },
-          { title: "Low Power Layer on the NSoC Base Platform", status: "Planned", hide: true, summary: "Clock-enable policy, idle-state control, retention planning, and wake-up correctness applied to the NSoC base.", tags: ["NSoC", "Low Power"], details: "#placeholder" },
-          { title: "Accelerator-Ready NSoC with UA-Lite", status: "Planned", hide: true, summary: "Descriptor-driven command path, DMA-style movement, scratchpad buffering, telemetry counters, and a lightweight UA-Lite block.", tags: ["UA-Lite", "NSoC", "Planned"], details: "#placeholder" },
-          { title: "Protocol Expansion on the NSoC", status: "Planned", hide: true, summary: "Protocol widening layered onto the stable NSoC base.", tags: ["NSoC", "Protocols", "Planned"], details: "#placeholder" },
-          { title: "Timing & Sign-off Awareness Pass", status: "Planned", hide: true, summary: "Constraint cleanup, path review, QoR study, and timing-driven RTL refinements.", tags: ["Timing", "QoR", "Planned"], details: "#placeholder" },
-          { title: "Parametric ALU with Self-Checking Testbench", status: "Built", summary: "Beginner VLSIVault RTL project focused on combinational arithmetic, clean flag behavior, and simple self-checking validation.", tags: ["VLSIVault", "RTL", "ALU"], details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/digital_rtl/DRD1_parametric_alu" },
-          { title: "Valid/Ready pipeline register slice + backpressure demos", status: "Planned", hide: true, summary: "Intermediate register-slice project for clean pipeline handshaking and flow control.", tags: ["VLSIVault", "RTL", "Handshake"], details: "#placeholder" },
-          { title: "Microcoded controller driving a datapath", status: "Planned", hide: true, summary: "Controller + datapath decomposition project with ROM-driven sequencing.", tags: ["VLSIVault", "Datapath", "Control"], details: "#placeholder" },
-          { title: "Multi-stage pipeline with hazards", status: "Planned", hide: true, summary: "Pipeline project covering stall, flush, hazard, and bypass behavior.", tags: ["VLSIVault", "Pipeline", "Hazards"], details: "#placeholder" },
-          { title: "Scoreboard-based in-order issue", status: "Planned", hide: true, summary: "Scheduling and dependency-handling project for issue/replay behavior.", tags: ["VLSIVault", "Issue Logic", "Scheduling"], details: "#placeholder" },
-          { title: "OoO core block subset", status: "Planned", hide: true, summary: "Rename, ROB, and commit-oriented microarchitecture ideas in a capstone-style block.", tags: ["VLSIVault", "OoO", "Capstone"], details: "#placeholder" }
-        ]
-      },
-      {
-        id: "cdc-reset",
-        title: "CDC / Reset",
-        description: "Cross-domain correctness, reset release discipline, and waveform-backed evidence for asynchronous behavior.",
-        projects: [
-          { title: "RTL CDC Reset-Safe Multi-Clock Data Mover", status: "Built", summary: "The same cornerstone FIFO project appears here because it directly proves synchronized pointers, reset-safe release, and safe cross-domain transfer.", tags: ["CDC", "Reset", "Async FIFO"], details: "https://github.com/sudhanvi-vakul/rtl-cdc-reset-datamover" }
-        ]
-      },
-      {
-        id: "functional-verification",
-        title: "Functional Verification",
-        description: "Self-checking testbenches, assertion thinking, reusable cocotb infrastructure, and regression-focused DV habits.",
-        projects: [
-          { title: "RTL CDC Reset-Safe Multi-Clock Data Mover", status: "Built", summary: "Waveform evidence around empty/full behavior, ordering guarantees, and reset entry/exit across clock domains.", tags: ["Waveforms", "Assertions", "Flags"], details: "https://github.com/sudhanvi-vakul/rtl-cdc-reset-datamover" },
-          { title: "ALU/FIFO with Self-Checking and Randomized Testbench", status: "Built", summary: "Foundational testbench project for deterministic checking and randomized stimulus.", tags: ["VLSIVault", "cocotb", "Assertions"], details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/fv_cocotb/FV1_self_checking_alu_fifo" },
-          { title: "Reusable cocotb Verification Kit", status: "Built", summary: "Reusable driver/monitor/scoreboard template for faster verification bring-up.", tags: ["VLSIVault", "cocotb", "Reusable"], details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/fv_cocotb/FV2_reusable_cocotb_kit" },
-          { title: "Regression & Coverage Dashboard Builder", status: "Built", summary: "Metrics and trend tracking around seeds, results, and coverage evolution.", tags: ["VLSIVault", "Coverage", "Regression"], details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/fv_cocotb/FV3_regression_coverage_dashboard" },
-          { title: "SVA Micro-Library for Handshakes, FIFOs, and Arbiters", status: "Planned", hide: true, summary: "Assertion-centric library project for reusable protocol and structure checks.", tags: ["VLSIVault", "SVA", "Planned"], details: "#placeholder" },
-          { title: "Formal Verification Clinic", status: "Planned", hide: true, summary: "Proof, cover, and counterexample-oriented formal exploration track.", tags: ["VLSIVault", "Formal", "Planned"], details: "#placeholder" },
-          { title: "Protocol Fuzzer + Coverage Closure Report", status: "Planned", hide: true, summary: "Randomized fault and stall exploration plus closure-style reporting.", tags: ["VLSIVault", "Protocol Fuzzing", "Planned"], details: "#placeholder" },
-          { title: "SoC Subsystem Verification Platform", status: "Planned", hide: true, summary: "Capstone multi-agent cocotb platform with CI and optional formal hooks.", tags: ["VLSIVault", "SoC Verification", "Capstone"], details: "#placeholder" }
-        ]
-      },
-      {
-        id: "uvm-verification",
-        title: "UVM Verification",
-        description: "UVM environments, agents, scoreboards, and coverage-driven verification progression.",
-        projects: [
-          { title: "UVM Hello World on tiny ALU DUT", status: "Built", summary: "Sequence item, driver, and monitor basics on a compact DUT.", tags: ["VLSIVault", "UVM", "ALU"], details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/fv_uvm/FVU1_uvm_hello_world_alu" },
-          { title: "APB UVM agent and reg read/write tests", status: "Built", summary: "APB agent work with sequencer, driver, and monitor architecture.", tags: ["VLSIVault", "APB", "UVM"], details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/fv_uvm/FVU2_apb_uvm_agent" },
-          { title: "Scoreboard and functional coverage for APB reg behavior", status: "Starting", hide: true, summary: "Coverage-driven APB behavior checking and scoreboard refinement.", tags: ["VLSIVault", "Coverage", "APB"], details: "#placeholder" },
-          { title: "UART UVM agent and error injection", status: "Planned", hide: true, summary: "UART UVM environment with parity, framing, and overrun scenarios.", tags: ["VLSIVault", "UART", "Planned"], details: "#placeholder" },
-          { title: "AXI-Lite UVM environment", status: "Planned", hide: true, summary: "AXI-Lite BFM, scoreboard, and backpressure cases.", tags: ["VLSIVault", "AXI-Lite", "Planned"], details: "#placeholder" },
-          { title: "Multi-agent UVM env: AXI-Lite + UART + IRQ", status: "Planned", hide: true, summary: "Multi-interface environment with coverage closure focus.", tags: ["VLSIVault", "UVM", "Capstone"], details: "#placeholder" },
-          { title: "UVM RAL + ABV + Formal + CI platform", status: "Planned", hide: true, summary: "Platform combining RAL, assertions, formal, and CI-driven reporting.", tags: ["VLSIVault", "RAL", "Capstone+"], details: "#placeholder" },
-          { title: "Reserved future UVM expansion", status: "Planned", hide: true, summary: "Placeholder for the next VLSIVault UVM expansion step.", tags: ["VLSIVault", "UVM", "Future"], details: "#placeholder" }
-        ]
-      },
-      {
-        id: "processor-architecture",
-        title: "Processor & Architecture",
-        description: "CPU build-out, pipeline control, interrupts, timers, MMIO, and mini-SoC evolution.",
-        projects: [
-          { title: "Tiny single-cycle CPU + assembler script", status: "Built", summary: "Beginner processor build focused on ISA execution and simple tool support.", tags: ["VLSIVault", "CPU", "Single-cycle"], details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/processor_arch/PA1_toy_cpu_single_cycle" },
-          { title: "5-stage pipeline + hazards", status: "Built", summary: "Pipeline control work including stall, flush, and forwarding behavior.", tags: ["VLSIVault", "Pipeline", "Hazards"], details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/processor_arch/PA2_5stage_pipeline" },
-          { title: "Interrupt controller + timer + MMIO integration", status: "Starting", hide: true, summary: "Current architecture work around interrupts, timers, and memory-mapped control.", tags: ["VLSIVault", "MMIO", "Interrupts"], details: "#placeholder" },
-          { title: "Mini-SoC: CPU + bus + UART + RAM + ROM boot", status: "Planned", hide: true, summary: "Mini-SoC composition project with boot flow and integrated peripherals.", tags: ["VLSIVault", "Mini-SoC", "Planned"], details: "#placeholder" },
-          { title: "Cache + performance counters + benchmarks", status: "Planned", hide: true, summary: "Performance-observability and memory-hierarchy expansion step.", tags: ["VLSIVault", "Cache", "Planned"], details: "#placeholder" },
-          { title: "RISC-V subset core + run tiny C", status: "Planned", hide: true, summary: "Capstone RISC-V subset core project with software bring-up goals.", tags: ["VLSIVault", "RISC-V", "Capstone"], details: "#placeholder" },
-          { title: "NSoC Base Platform", status: "Starting", hide: true, summary: "Processor-adjacent NSoC base with AXI-Lite control, timer/IRQ path, and BRAM-backed state window.", tags: ["NSoC", "AXI-Lite", "Starting"], details: "#placeholder" }
-        ]
-      },
-      {
-        id: "communication-interfaces",
-        title: "Communication Interfaces",
-        description: "UART, SPI, I2C, FIFOs, and broader peripheral/controller integration.",
-        projects: [
-          { title: "UART TX/RX + baud gen + loopback tests", status: "Planned", hide: true, summary: "Foundational UART implementation with loopback and testbench checks.", tags: ["VLSIVault", "UART", "Planned"], details: "#placeholder" },
-          { title: "SPI master + SPI flash read model", status: "Planned", hide: true, summary: "Intermediate SPI controller and flash-interaction project.", tags: ["VLSIVault", "SPI", "Planned"], details: "#placeholder" },
-          { title: "I2C master + EEPROM model + NACK/timeout handling", status: "Planned", hide: true, summary: "I2C control logic with realistic device response and error handling.", tags: ["VLSIVault", "I2C", "Planned"], details: "#placeholder" },
-          { title: "UART with FIFOs + flow control + overflow/underflow tests", status: "Planned", hide: true, summary: "Advanced UART subsystem work with buffering and robustness checks.", tags: ["VLSIVault", "UART", "Advanced"], details: "#placeholder" },
-          { title: "Multi-protocol peripheral hub behind MMIO", status: "Planned", hide: true, summary: "Integration of UART, SPI, and I2C into one mapped subsystem.", tags: ["VLSIVault", "MMIO", "Planned"], details: "#placeholder" },
-          { title: "Protocol fuzzing: randomized stalls/errors + coverage", status: "Planned", hide: true, summary: "Capstone protocol verification and error-stress project.", tags: ["VLSIVault", "Coverage", "Capstone"], details: "#placeholder" },
-          { title: "UART-to-Ethernet Bridge on KC705", status: "Built", summary: "Bidirectional UART-to-Ethernet bridge with buffering, CDC-safe handoff, STA, and FPGA validation.", tags: ["Verilog RTL", "Ethernet", "KC705"], details: "#placeholder" },
-          { title: "Protocol Expansion on the NSoC", status: "Planned", hide: true, summary: "GPIO, PWM, I2C, SPI, and later Ethernet added one by one after the NSoC base stabilizes.", tags: ["Protocols", "NSoC", "Planned"], details: "#placeholder" }
-        ]
-      },
-      {
-        id: "soc-integration",
-        title: "SoC / Bus Integration",
-        description: "AXI/APB composition, MMIO, timers, interrupts, and platform-level subsystem integration.",
-        projects: [
-          { title: "NSoC Base Platform", status: "Starting", hide: true, summary: "AXI-Lite control, timer/IRQ path, BRAM-backed storage, and clean software-visible status behavior.", tags: ["NSoC", "AXI-Lite", "MMIO"], details: "#placeholder" },
-          { title: "Interrupt controller + timer + MMIO integration", status: "Starting", hide: true, summary: "Processor-side subsystem integration aligned with the broader SoC roadmap.", tags: ["VLSIVault", "MMIO", "Interrupts"], details: "#placeholder" },
-          { title: "Mini-SoC: CPU + bus + UART + RAM + ROM boot", status: "Planned", hide: true, summary: "Next staged build for a more cohesive SoC-level portfolio block.", tags: ["VLSIVault", "Mini-SoC", "Planned"], details: "#placeholder" },
-          { title: "Protocol Expansion on the NSoC", status: "Planned", hide: true, summary: "Protocol widening layered onto the stable NSoC base.", tags: ["NSoC", "Protocols", "Planned"], details: "#placeholder" }
-        ]
-      },
-      {
-        id: "low-power-design",
-        title: "Low-Power Design",
-        description: "Clock gating, retention, idle-state control, power-aware architecture, and low-power memory work.",
-        projects: [
-          { title: "Clock gating intro + checks", status: "Built", summary: "Foundational glitch-free gating and enable-behavior project.", tags: ["VLSIVault", "Clock Gating", "Built"], details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/low_power/LPD1_clock_gating_intro" },
-          { title: "Sleep/idle controller FSM + wake sources", status: "Planned", hide: true, summary: "Power-state controller with wake-event handling.", tags: ["VLSIVault", "FSM", "Planned"], details: "#placeholder" },
-          { title: "Retention register file + save/restore sequencing", status: "Planned", hide: true, summary: "Retention-aware state preservation and restoration project.", tags: ["VLSIVault", "Retention", "Planned"], details: "#placeholder" },
-          { title: "Multi-mode clocks + safe switching protocol", status: "Planned", hide: true, summary: "Clock-divider and mux project with safe dynamic mode switching.", tags: ["VLSIVault", "Clocking", "Planned"], details: "#placeholder" },
-          { title: "Power-aware microarchitecture", status: "Planned", hide: true, summary: "Idle detection and per-domain gating architecture study.", tags: ["VLSIVault", "Power Domains", "Planned"], details: "#placeholder" },
-          { title: "Low-Power 8-Input AND Gate Using Dual-Vt Domino Logic", status: "Built", hide: false, summary: "Low-power transistor-level design project analyzing standard domino versus dual-Vt domino logic for an 8-input AND gate, emphasizing leakage reduction and performance tradeoffs.", tags: ["Low Power", "Dual-Vt", "Domino Logic", "Cadence"], details: "8 input AND Gate.pdf"},
-          { title: "UPF-like power intent doc + assertion enforcement", status: "Planned", hide: true, summary: "Power-intent documentation and rule-check thinking in a portable flow.", tags: ["VLSIVault", "Power Intent", "Planned"], details: "#placeholder" },
-          { title: "Multi-Domain Power Gating + Retention + Verification", status: "Planned", hide: true, summary: "Capstone SoC subsystem with multi-domain power and verification strategy.", tags: ["VLSIVault", "Capstone+", "Planned"], details: "#placeholder" },
-          { title: "Energy-Aware Microarchitecture with DVFS", status: "Planned", hide: true, summary: "Low-power microarchitecture with DVFS, modeling, and analysis.", tags: ["VLSIVault", "DVFS", "Planned"], details: "#placeholder" },
-          { title: "Low Power Layer on the NSoC Base Platform", status: "Planned", hide: true, summary: "Clock-enable policy, idle-state control, retention planning, and wake-up correctness applied to the NSoC base.", tags: ["NSoC", "Low Power", "Planned"], details: "#placeholder" },
-          { title: "Low-Power 10T SRAM Using Sleep Transistors and Drain Gating", status: "Built", summary: "10T SRAM bitcell work focused on leakage, delay, retention, and stability trade-offs.", tags: ["SRAM", "Virtuoso", "Low Power"], details: "10T SRAM.pdf" }
-        ]
-      },
-      {
-        id: "physical-design",
-        title: "Physical Design",
-        description: "Synthesis, floorplanning, CTS, signoff evidence, and report-reading progression.",
-        projects: [
-          { title: "Constraint-First STA Sprint", status: "Built", summary: "Entry physical-design track project focused on synthesis and timing report reading.", tags: ["VLSIVault", "STA", "Built"], details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/physical_design/PD1_constraint_first_sta_sprint" },
-          { title: "RTL-to-GDS Deep Dive", status: "Planned", hide: true, summary: "OpenLane/OpenROAD run and report-reading exercise.", tags: ["VLSIVault", "OpenLane", "Planned"], details: "#placeholder" },
-          { title: "Floorplan Parameter Sweep Lab", status: "Planned", hide: true, summary: "Utilization and aspect-ratio study against congestion behavior.", tags: ["VLSIVault", "Floorplan", "Planned"], details: "#placeholder" },
-          { title: "Timing Closure Clinic", status: "Planned", hide: true, summary: "Pipelining and constraints iteration with WNS/TNS comparisons.", tags: ["VLSIVault", "Timing Closure", "Planned"], details: "#placeholder" },
-          { title: "CTS Tradeoff Explorer", status: "Planned", hide: true, summary: "Clock-tree tradeoff analysis across skew, insertion delay, and buffering.", tags: ["VLSIVault", "CTS", "Planned"], details: "#placeholder" },
-          { title: "Signoff Evidence Packet Builder", status: "Planned", hide: true, summary: "DRC/LVS and inspection-oriented evidence packaging project.", tags: ["VLSIVault", "Signoff", "Planned"], details: "#placeholder" },
-          { title: "Tapeout-Style Release Candidate Builder", status: "Planned", hide: true, summary: "Release-candidate flow with extraction, PDN, and signoff awareness.", tags: ["VLSIVault", "Tapeout Style", "Capstone"], details: "#placeholder" }
-        ]
-      },
-      {
-        id: "timing-sta",
-        title: "Timing / STA / Signoff",
-        description: "Constraint writing, path review, timing cleanup, and implementation-aware report reading.",
-        projects: [
-          { title: "Constraint-First STA Sprint", status: "Built", summary: "Included here as well because it directly demonstrates constraint and timing analysis work.", tags: ["VLSIVault", "STA", "Timing"], details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/timing_sta/FV1_constraint_first_sta_sprint" },
-          { title: "UART-to-Ethernet Bridge on KC705", status: "Built", summary: "Applied SDC constraints, STA, and timing closure across multiple baud rates and traffic conditions.", tags: ["STA", "Timing Closure", "Board Bring-up"], details: "UART-to-Ethernet two-way communication.pdf" },
-          { title: "Timing & Sign-off Awareness Pass", status: "Planned", hide: true, summary: "Constraint cleanup, path review, QoR study, and timing-driven RTL refinements.", tags: ["Timing", "QoR", "Planned"], details: "#placeholder" }
-        ]
-      },
-      {
-        id: "memory-systems",
-        title: "Memory Systems",
-        description: "SRAM design, stability analysis, parasitics, and memory-aware implementation work.",
-        projects: [
-          { title: "Implementation of 6T SRAM Cell using ASAP7 7nm Technology", status: "Built", summary: "6T SRAM bitcell implementation and analysis with parasitics and read/write/hold robustness evaluation.", tags: ["ASAP7", "SRAM", "Memory"], details: "6T SRAM.pdf" },
-          { title: "Low-Power 10T SRAM Using Sleep Transistors and Drain Gating", status: "Built", summary: "Low-power memory design with PVT characterization and comparative stability trade-offs.", tags: ["10T SRAM", "Low Power", "Memory"], details: "10T SRAM.pdf" }
-        ]
-      },
-      {
-        id: "hardware-acceleration",
-        title: "Hardware Acceleration & FPGA",
-        description: "Accelerator microarchitecture, HLS, FPGA inference, and performance-oriented architecture studies.",
-        projects: [
-          { title: "Accelerator-Ready NSoC with UA-Lite", status: "Planned", hide: true, summary: "Descriptor-driven command path, DMA-style movement, scratchpad buffering, telemetry counters, and a lightweight UA-Lite block.", tags: ["UA-Lite", "NSoC", "Planned"], details: "#placeholder" },
-          { title: "FPGA-based Systolic Array Hardware Accelerator Design of VGG11", status: "Built", summary: "Vitis HLS accelerator with pipelining, unrolling, tiling, AXI interfaces, and QoR analysis.", tags: ["HLS", "FPGA", "VGG11"], details: "https://github.com/sudhanvi-vakul/vgg11-fpga-accelerator" },
-          { title: "System Exploration — Swish vs ReLU in Apache TVM", status: "Built", summary: "Compiler and performance study on activation-function cost in a hardware-aware stack.", tags: ["TVM", "LLVM", "Benchmarking"], details: "https://github.com/sudhanvi-vakul/system-exploration" }
-        ]
-      },
-      {
-        id: "dft-test",
-        title: "DFT & Production Test",
-        description: "Future scan, JTAG, BIST, and ATPG-oriented work once the core RTL and SoC platform mature.",
-        projects: [
-          { title: "Scan chain + JTAG bring-up lab", status: "Planned", hide: true, summary: "Future starter project for scan stitching, access, and test visibility concepts.", tags: ["DFT", "JTAG", "Future"], details: "#placeholder" }
-        ]
-      }
+{
+  id: "rtl-design",
+  title: "RTL Design",
+  description: "RTL-first growth track covering foundational flow discipline, CDC-safe design, NSoC bring-up, and the DRD series.",
+  projects: [
+    {
+      title: "RTL CI/CD Toolkit",
+      status: "Built",
+      summary: "Python-driven RTL execution flow for compiling, simulating, selecting tests, capturing logs, saving waveforms, and organizing reports. The toolkit abstracts simulator invocation, standardizes regression runs, and preserves reproducible evidence across hardware projects.",
+      tags: ["Python", "YAML", "TCL", "Vivado XSIM", "Regression Automation", "Waveform Capture"],
+      details: "https://github.com/sudhanvi-vakul/rtl-productivity-cicd-toolkit"
+    },
+    {
+      title: "RTL CDC Reset-Safe Multi-Clock Data Mover",
+      status: "Built",
+      summary: "Parameterized asynchronous FIFO for transferring data across independent clock domains. The design uses Gray-coded pointers, multi-flop synchronizers, domain-local reset handling, and full or empty flag generation to maintain ordered cross-clock movement.",
+      tags: ["SystemVerilog", "Vivado XSIM", "CDC Design", "Asynchronous FIFO", "Gray-Code Synchronization", "Reset-Safe RTL"],
+      details: "https://github.com/sudhanvi-vakul/rtl-cdc-reset-datamover"
+    },
+    {
+      title: "NSoC Base Platform",
+      status: "Starting",
+      hide: true,
+      summary: "Memory-mapped subsystem platform with AXI-Lite register access, timer and interrupt connectivity, BRAM-backed address space, and software-visible control registers. The design establishes the integration base for later peripheral, power, and accelerator extensions.",
+      tags: ["SystemVerilog", "Vivado XSIM", "AXI-Lite", "MMIO", "BRAM", "Interrupt Integration"],
+      details: "#placeholder"
+    },
+    {
+      title: "Low Power Layer on the NSoC Base Platform",
+      status: "Planned",
+      hide: true,
+      summary: "Power-aware RTL layer adding clock-enable control, idle-state management, retention-aware state handling, and wake-up sequencing to the NSoC base. The design targets activity reduction while preserving subsystem correctness and software-visible control behavior.",
+      tags: ["SystemVerilog", "Vivado XSIM", "Clock Gating", "State Retention", "Wake-Up Control", "Low-Power RTL"],
+      details: "#placeholder"
+    },
+    {
+      title: "Accelerator-Ready NSoC with UA-Lite",
+      status: "Planned",
+      hide: true,
+      summary: "NSoC extension adding descriptor-controlled command handling, DMA-style data movement, scratchpad-style buffering, telemetry counters, and UA-Lite integration. The design targets accelerator-facing control and data paths within a software-visible subsystem.",
+      tags: ["SystemVerilog", "Vivado XSIM", "DMA-Style Movement", "Descriptor Processing", "Scratchpad Buffering", "Accelerator Integration"],
+      details: "#placeholder"
+    },
+    {
+      title: "Protocol Expansion on the NSoC",
+      status: "Planned",
+      hide: true,
+      summary: "Peripheral-integration layer adding protocol blocks such as UART, SPI, I2C, GPIO, or PWM onto the NSoC memory map. The design connects control registers, interrupt behavior, and interface logic within a common subsystem framework.",
+      tags: ["SystemVerilog", "Vivado XSIM", "UART", "SPI", "I2C", "Peripheral Integration"],
+      details: "#placeholder"
+    },
+    {
+      title: "Timing & Sign-off Awareness Pass",
+      status: "Planned",
+      hide: true,
+      summary: "Timing-focused RTL review covering constraint definition, critical-path inspection, QoR report interpretation, and timing-driven cleanup. The work targets path-sensitive structures and refines RTL with setup/hold and closure considerations in mind.",
+      tags: ["SystemVerilog", "SDC", "STA", "QoR Analysis", "Constraint Review", "Timing-Driven RTL"],
+      details: "#placeholder"
+    },
+    {
+      title: "Parametric ALU with Self-Checking Testbench",
+      status: "Built",
+      summary: "Parameterized combinational ALU implementing arithmetic and logical operations with configurable data width and operation decoding. The RTL organizes datapath logic for reuse in larger designs while maintaining synthesizable block-level structure.",
+      tags: ["SystemVerilog", "Vivado XSIM", "Parameterized Design", "Combinational RTL", "Datapath Design"],
+      details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/digital_rtl/DRD1_parametric_alu"
+    },
+    {
+      title: "Valid/Ready pipeline register slice + backpressure demos",
+      status: "Planned",
+      hide: true,
+      summary: "Handshake-driven pipeline block demonstrating valid/ready transfer, stall propagation, and backpressure handling through register slices. The design tracks synchronous data movement, bubble behavior, and downstream flow control in pipelined paths.",
+      tags: ["SystemVerilog", "Vivado XSIM", "Valid/Ready Interface", "Pipeline Design", "Backpressure Handling", "Flow Control"],
+      details: "#placeholder"
+    },
+    {
+      title: "Microcoded controller driving a datapath",
+      status: "Planned",
+      hide: true,
+      summary: "Controller-datapath design using ROM-based microinstructions to sequence multi-cycle operations. The project generates explicit control signals for datapath steps and separates execution hardware from sequencing logic.",
+      tags: ["SystemVerilog", "Vivado XSIM", "Microcoded Control", "ROM-Based Sequencing", "Multi-Cycle RTL"],
+      details: "#placeholder"
+    },
+    {
+      title: "Multi-stage pipeline with hazards",
+      status: "Planned",
+      hide: true,
+      summary: "Staged processor pipeline implementing hazard detection, stalling, flushing, and bypass paths for dependent operations. The design coordinates control and datapath behavior to preserve correctness under data and control hazards.",
+      tags: ["SystemVerilog", "Vivado XSIM", "Pipeline RTL", "Hazard Detection", "Bypassing/Forwarding", "Processor Microarchitecture"],
+      details: "#placeholder"
+    },
+    {
+      title: "Scoreboard-based in-order issue",
+      status: "Planned",
+      hide: true,
+      summary: "Issue-control design using scoreboard logic to track dependencies, resource availability, and operand readiness while preserving in-order execution. The project models scheduling decisions and replay-sensitive control behavior in the issue path.",
+      tags: ["SystemVerilog", "Vivado XSIM", "Scoreboarding", "Issue Logic", "Dependency Tracking", "Scheduling Control"],
+      details: "#placeholder"
+    },
+    {
+      title: "OoO core block subset",
+      status: "Planned",
+      hide: true,
+      summary: "Microarchitecture block modeling out-of-order mechanisms including register renaming, reorder-buffer bookkeeping, completion tracking, and in-order commit. The design focuses on dependency management and retirement control in an OoO execution flow.",
+      tags: ["SystemVerilog", "Vivado XSIM", "Register Renaming", "Reorder Buffer", "Commit Logic", "Out-of-Order Microarchitecture"],
+      details: "#placeholder"
+    }
+  ]
+},
+{
+  id: "functional-verification",
+  title: "Functional Verification",
+  description: "Self-checking testbenches, assertion thinking, reusable cocotb infrastructure, UVM methodology, and regression-focused DV habits.",
+  projects: [
+    {
+      title: "RTL CDC Reset-Safe Multi-Clock Data Mover",
+      status: "Built",
+      summary: "Self-checking verification environment for an asynchronous FIFO, checking reset recovery, write/read ordering, full and empty flag behavior, and cross-clock data movement under independent write and read clocks. Simulation traces are used to inspect synchronized pointer movement and domain-crossing behavior.",
+      tags: ["SystemVerilog", "Vivado XSIM", "CDC Verification", "Waveform Debug", "Directed Testing"],
+      details: "https://github.com/sudhanvi-vakul/rtl-cdc-reset-datamover"
+    },
+    {
+      title: "ALU/FIFO with Self-Checking and Randomized Testbench",
+      status: "Built",
+      summary: "Self-checking testbench for ALU and FIFO DUTs using randomized stimulus, reference-result comparison, and automated pass/fail checking. The environment exercises arithmetic, logic, queue behavior, overflow or underflow conditions, and corner cases through reusable checking and stimulus generation components.",
+      tags: ["Python", "cocotb", "Randomized Testing", "Scoreboarding", "Self-Checking Testbench"],
+      details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/fv_cocotb/FV1_self_checking_alu_fifo"
+    },
+    {
+      title: "Reusable cocotb Verification Kit",
+      status: "Built",
+      summary: "Reusable cocotb verification framework with structured drivers, monitors, scoreboards, and test utilities for building consistent DUT-level testbenches. The kit standardizes transaction handling, stimulus generation, result checking, and regression organization so multiple designs can share a common Python-based verification architecture.",
+      tags: ["Python", "cocotb", "Pytest", "Verification Infrastructure", "Driver-Monitor-Scoreboard"],
+      details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/fv_cocotb/FV2_reusable_cocotb_kit"
+    },
+    {
+      title: "Glitchfree Clock gating",
+      status: "Built",
+      summary: "Verification flow for gated-clock behavior, checking that enable-controlled clock suppression does not introduce spurious pulses or incorrect edge propagation. The project exercises enable transitions around active clock edges and validates stable gated-clock output under functional switching conditions.",
+      tags: ["SystemVerilog", "Vivado XSIM", "Clock Gating", "Low-Power Verification", "Glitch Checks"],
+      details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/low_power/LPD1_clock_gating_intro"
+    },
+    {
+      title: "Regression & Coverage Dashboard Builder",
+      status: "Built",
+      summary: "Result-processing framework that collects regression outputs, organizes test status, and summarizes coverage progress into a readable dashboard. The flow converts raw simulation results into verification-facing views for pass/fail tracking, execution visibility, and coverage-oriented debug prioritization.",
+      tags: ["Python", "Pandas", "HTML", "Regression Analytics", "Coverage Tracking", "Result Aggregation"],
+      details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/fv_cocotb/FV3_regression_coverage_dashboard"
+    },
+    {
+      title: "SVA Micro-Library for Handshakes, FIFOs, and Arbiters",
+      status: "Planned",
+      hide: true,
+      summary: "Reusable assertion library targeting protocol and structure-level checks for handshakes, FIFO behavior, and arbitration logic. The project is meant to encode temporal correctness properties such as request-grant ordering, queue safety, and interface sequencing into portable SVA checkers.",
+      tags: ["SystemVerilog", "SVA", "Assertion Library", "Protocol Checking", "FIFO Verification"],
+      details: "#placeholder"
+    },
+    {
+      title: "Formal Verification Clinic",
+      status: "Planned",
+      hide: true,
+      summary: "Formal verification workflow for proving safety properties, generating cover scenarios, and analyzing counterexamples on RTL blocks. The project focuses on property specification, proof convergence, unreachable-state discovery, and bug isolation without relying on simulation stimulus.",
+      tags: ["SystemVerilog", "SVA", "Formal Verification", "Proof/Cover", "Counterexample Analysis"],
+      details: "#placeholder"
+    },
+    {
+      title: "Protocol Fuzzer + Coverage Closure Report",
+      status: "Planned",
+      hide: true,
+      summary: "Protocol-stress environment using randomized stalls, malformed transfers, and error injection to expose corner-case failures in interface logic. The flow pairs fuzz-style stimulus with coverage reporting to identify unexercised behaviors and drive closure on protocol-state and error-handling scenarios.",
+      tags: ["Python", "cocotb", "Protocol Fuzzing", "Coverage Closure", "Error Injection"],
+      details: "#placeholder"
+    },
+    {
+      title: "UVM Hello World on tiny ALU DUT",
+      status: "Built",
+      summary: "UVM-based verification environment for an ALU DUT using sequence items, sequences, driver, monitor, agent, environment, and scoreboard components. Transactions are generated at the sequencer, driven to the DUT, observed through monitoring, and checked against expected ALU behavior.",
+      tags: ["SystemVerilog", "UVM", "Questa/XSIM", "Scoreboarding", "Transaction-Level Verification"],
+      details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/fv_uvm/FVU1_uvm_hello_world_alu"
+    },
+    {
+      title: "APB UVM agent and reg read/write tests",
+      status: "Built",
+      summary: "UVM verification environment for APB transactions with agent-level components driving and monitoring register read and write operations. The project checks protocol-compliant bus activity, request-response behavior, and register access correctness through sequence-driven stimulus and transaction-level analysis.",
+      tags: ["SystemVerilog", "UVM", "APB", "Register Verification", "Bus Functional Verification"],
+      details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/fv_uvm/FVU2_apb_uvm_agent"
+    },
+    {
+      title: "Scoreboard and functional coverage for APB reg behavior",
+      status: "Starting",
+      hide: true,
+      summary: "APB verification extension adding transaction scoreboarding and functional coverage for register behavior. The environment is intended to correlate observed bus activity with expected register state updates while measuring address, access-type, and data-pattern coverage across the programmed register map.",
+      tags: ["SystemVerilog", "UVM", "APB", "Functional Coverage", "Scoreboarding"],
+      details: "#placeholder"
+    },
+    {
+      title: "UART UVM agent and error injection",
+      status: "Planned",
+      hide: true,
+      summary: "UART-focused UVM environment with agent components for serial stimulus, sampling, and protocol checking. The project is intended to exercise parity faults, framing errors, overrun conditions, and line-level timing behavior while validating receive and transmit handling under injected error scenarios.",
+      tags: ["SystemVerilog", "UVM", "UART", "Error Injection", "Protocol Verification"],
+      details: "#placeholder"
+    },
+    {
+      title: "AXI-Lite UVM environment",
+      status: "Planned",
+      hide: true,
+      summary: "UVM environment for AXI-Lite transactions covering address, data, and response channel behavior under sequence-controlled stimulus. The project is intended to verify register-mapped accesses, handshake compliance, and backpressure behavior while checking transaction ordering and response correctness.",
+      tags: ["SystemVerilog", "UVM", "AXI-Lite", "Register Verification", "Handshake Checking"],
+      details: "#placeholder"
+    },
+    {
+      title: "Multi-agent UVM env: AXI-Lite + UART + IRQ",
+      status: "Planned",
+      hide: true,
+      summary: "Multi-interface UVM environment combining AXI-Lite, UART, and interrupt-agent activity within one subsystem-level bench. The verification flow is intended to coordinate concurrent bus, serial, and IRQ interactions while checking cross-interface behavior, event ordering, and integrated subsystem responses.",
+      tags: ["SystemVerilog", "UVM", "AXI-Lite", "UART", "IRQ Verification", "Multi-Agent DV"],
+      details: "#placeholder"
+    },
+    {
+      title: "UVM RAL + ABV + Formal + CI platform",
+      status: "Planned",
+      hide: true,
+      summary: "Integrated verification platform combining UVM register modeling, assertion-based checks, formal property analysis, and CI-driven regression execution. The project is intended to connect register abstraction, dynamic verification, property checking, and automated reporting into a unified verification workflow.",
+      tags: ["SystemVerilog", "UVM", "RAL", "SVA", "Formal Verification", "CI/CD"],
+      details: "#placeholder"
+    },
+    {
+      title: "Reserved future UVM expansion",
+      status: "Planned",
+      hide: true,
+      summary: "Placeholder for a future UVM verification block that extends the class-based environment stack with additional protocol, subsystem, or coverage-driven capabilities. The slot is reserved for the next agent, environment, or methodology layer added to the verification progression.",
+      tags: ["SystemVerilog", "UVM", "Verification Infrastructure"],
+      details: "#placeholder"
+    },
+    {
+      title: "SoC Subsystem Verification Platform",
+      status: "Planned",
+      hide: true,
+      summary: "Subsystem-level verification platform intended to coordinate multiple interface agents, software-visible behavior, regression execution, and optional formal hooks around an SoC-style DUT. The flow is meant to validate cross-block interactions, event sequencing, and integrated control/data movement behavior.",
+      tags: ["Python", "cocotb", "SystemVerilog", "SoC Verification", "CI/CD", "Formal Hooks"],
+      details: "#placeholder"
+    }
+  ]
+},
+{
+  id: "processor-architecture",
+  title: "Processor & Architecture",
+  description: "CPU build-out, pipeline control, interrupts, timers, MMIO, and mini-SoC evolution.",
+  projects: [
+    {
+      title: "Tiny single-cycle CPU",
+      status: "Built",
+      summary: "Single-cycle CPU executing fetch, decode, execute, memory, and writeback within one cycle. The design integrates datapath and control logic, implements instruction decoding and ALU or register-file updates, and includes an assembler flow that converts simple programs into executable machine code.",
+      tags: ["SystemVerilog", "Python", "Vivado XSIM", "CPU RTL", "Instruction Decode", "Assembler"],
+      details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/processor_arch/PA1_toy_cpu_single_cycle"
+    },
+    {
+      title: "5-stage pipeline and hazards detection",
+      status: "Built",
+      summary: "Five-stage pipelined processor with stage registers, hazard detection, stall control, flush handling, and forwarding paths. The design manages instruction movement across fetch, decode, execute, memory, and writeback while preserving correctness under data dependencies and control-flow changes.",
+      tags: ["SystemVerilog", "Vivado XSIM", "Pipeline RTL", "Hazard Detection", "Stall/Flush Control", "Forwarding"],
+      details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/processor_arch/PA2_5stage_pipeline"
+    },
+    {
+      title: "Interrupt controller + timer + MMIO integration",
+      status: "Starting",
+      hide: true,
+      summary: "Processor subsystem integrating timer logic, interrupt generation, interrupt handling paths, and memory-mapped control registers. The design connects event generation to software-visible MMIO state so the core can observe, acknowledge, and respond to timed and external control events.",
+      tags: ["SystemVerilog", "Vivado XSIM", "MMIO", "Interrupt Controller", "Timer Integration"],
+      details: "#placeholder"
+    },
+    {
+      title: "Mini-SoC: CPU + bus + UART + RAM + ROM boot",
+      status: "Planned",
+      hide: true,
+      summary: "Processor-based SoC integrating CPU, interconnect, UART peripheral, RAM, and ROM-backed boot flow. The design connects instruction booting, memory access, peripheral communication, and bus transactions within a single executable subsystem.",
+      tags: ["SystemVerilog", "Vivado XSIM", "SoC Integration", "UART", "Bus Architecture", "Boot Flow"],
+      details: "#placeholder"
+    },
+    {
+      title: "Cache + performance counters + benchmarks",
+      status: "Planned",
+      hide: true,
+      summary: "Processor extension adding cache structures, hardware performance counters, and benchmark-driven observability. The design tracks memory behavior and execution events through counter logic while measuring the impact of caching on program execution characteristics.",
+      tags: ["SystemVerilog", "Vivado XSIM", "Cache Design", "Performance Counters", "Benchmarking"],
+      details: "#placeholder"
+    },
+    {
+      title: "RISC-V subset core + run tiny C",
+      status: "Planned",
+      hide: true,
+      summary: "RISC-V subset processor implementing instruction decode, execution, register-state updates, and software-visible architectural behavior needed to run small compiled C programs. The design connects ISA support, memory access, and toolchain-driven program execution.",
+      tags: ["SystemVerilog", "C", "RISC-V", "CPU RTL", "Instruction Decode", "Toolchain Bring-Up"],
+      details: "#placeholder"
+    },
+    {
+      title: "NSoC Base Platform",
+      status: "Starting",
+      hide: true,
+      summary: "Processor-adjacent subsystem platform with AXI-Lite control registers, timer and interrupt paths, and BRAM-backed state storage. The design provides software-visible control and local memory integration for CPU-facing or accelerator-facing architectural expansion.",
+      tags: ["SystemVerilog", "Vivado XSIM", "AXI-Lite", "MMIO", "BRAM", "Interrupt Integration"],
+      details: "#placeholder"
+    }
+  ]
+},
+{
+  id: "communication-interfaces",
+  title: "Communication Interfaces",
+  description: "UART, SPI, I2C, FIFOs, and broader peripheral/controller integration.",
+  projects: [
+    {
+      title: "UART TX/RX + baud gen + loopback tests",
+      status: "Planned",
+      hide: true,
+      summary: "UART subsystem implementing transmit, receive, baud-rate generation, and loopback verification. The design covers serial framing, bit-timing control, start and stop-bit handling, and end-to-end data transfer between transmit and receive paths.",
+      tags: ["SystemVerilog", "Vivado XSIM", "UART", "Baud Generator", "Loopback Testing"],
+      details: "#placeholder"
+    },
+    {
+      title: "SPI master + SPI flash read model",
+      status: "Planned",
+      hide: true,
+      summary: "SPI master controller driving clock, chip-select, and serial data signals to communicate with a flash-memory model. The design performs command issuance, address shifting, serial read sequencing, and response capture through protocol-timed transactions.",
+      tags: ["SystemVerilog", "Python", "Vivado XSIM", "SPI", "Flash Read Modeling"],
+      details: "#placeholder"
+    },
+    {
+      title: "I2C master + EEPROM model + NACK/timeout handling",
+      status: "Planned",
+      hide: true,
+      summary: "I2C master controlling start, stop, address, read, and write sequencing against an EEPROM model. The design handles acknowledge sampling, NACK detection, timeout behavior, and bus-level transaction control for device-oriented serial communication.",
+      tags: ["SystemVerilog", "Python", "Vivado XSIM", "I2C", "EEPROM Modeling", "NACK/Timeout Handling"],
+      details: "#placeholder"
+    },
+    {
+      title: "UART with FIFOs + flow control + overflow/underflow tests",
+      status: "Planned",
+      hide: true,
+      summary: "UART subsystem integrating transmit and receive FIFOs, flow-control signaling, and buffering checks around serial transfers. The design tracks queued data movement, backpressure behavior, and overflow or underflow conditions during sustained traffic.",
+      tags: ["SystemVerilog", "Vivado XSIM", "UART", "Asynchronous FIFO", "Flow Control", "Overflow/Underflow Checks"],
+      details: "#placeholder"
+    },
+    {
+      title: "Multi-protocol peripheral hub behind MMIO",
+      status: "Planned",
+      hide: true,
+      summary: "Memory-mapped peripheral subsystem integrating UART, SPI, and I2C controllers behind a shared MMIO interface. The design connects register access, protocol control, status reporting, and interrupt-capable peripheral behavior within one software-visible block.",
+      tags: ["SystemVerilog", "Vivado XSIM", "MMIO", "UART", "SPI", "I2C"],
+      details: "#placeholder"
+    },
+    {
+      title: "Protocol fuzzing: randomized stalls/errors + coverage",
+      status: "Planned",
+      hide: true,
+      summary: "Verification flow applying randomized stalls, malformed transactions, and injected protocol errors across interface controllers. The environment measures exercised scenarios with coverage tracking and checks controller recovery, error handling, and protocol-state robustness under stressed communication behavior.",
+      tags: ["Python", "cocotb", "Pytest", "Protocol Fuzzing", "Coverage Tracking", "Error Injection"],
+      details: "#placeholder"
+    },
+    {
+      title: "UART-to-Ethernet Bridge on KC705",
+      status: "Built",
+      summary: "FPGA bridge connecting UART and Ethernet paths through buffering, control logic, and protocol-side interfacing on the KC705 board. The design moves serial data into Ethernet-facing transfers and returns network-side data back through the UART path for bidirectional communication.",
+      tags: ["Verilog", "Xilinx KC705", "Vivado", "UART", "Ethernet", "FPGA Bring-Up"],
+      details: "#placeholder"
+    },
+    {
+      title: "Protocol Expansion on the NSoC",
+      status: "Planned",
+      hide: true,
+      summary: "NSoC peripheral expansion integrating GPIO, PWM, I2C, SPI, and later Ethernet through a common control and register framework. The design adds protocol blocks incrementally while preserving shared memory-mapped access, status visibility, and subsystem-level connectivity.",
+      tags: ["SystemVerilog", "Vivado XSIM", "MMIO", "GPIO/PWM", "I2C/SPI", "Ethernet"],
+      details: "#placeholder"
+    }
+  ]
+},
+{
+  id: "soc-integration",
+  title: "SoC / Bus Integration",
+  description: "AXI/APB composition, MMIO, timers, interrupts, and platform-level subsystem integration.",
+  projects: [
+    {
+      title: "NSoC Base Platform",
+      status: "Starting",
+      hide: true,
+      summary: "Subsystem platform integrating AXI-Lite control registers, timer and interrupt paths, BRAM-backed state storage, and software-visible status logic. The design connects bus-facing control with local storage and event signaling through a unified memory-mapped interface.",
+      tags: ["SystemVerilog", "Vivado XSIM", "AXI-Lite", "MMIO", "BRAM", "Interrupt Integration"],
+      details: "#placeholder"
+    },
+    {
+      title: "Interrupt controller + timer + MMIO integration",
+      status: "Starting",
+      hide: true,
+      summary: "Processor-side subsystem integrating timer-generated events, interrupt routing, and memory-mapped control registers. The design connects hardware event sources to software-visible status, interrupt acknowledgment, and register-controlled behavior through a shared MMIO path.",
+      tags: ["SystemVerilog", "Vivado XSIM", "MMIO", "Interrupt Controller", "Timer Integration"],
+      details: "#placeholder"
+    },
+    {
+      title: "Mini-SoC: CPU + bus + UART + RAM + ROM boot",
+      status: "Planned",
+      hide: true,
+      summary: "SoC platform integrating CPU, interconnect, UART peripheral, RAM, and ROM-backed boot sequencing. The design connects instruction fetch, data access, bus transactions, peripheral communication, and boot-time control flow within a single memory-mapped subsystem.",
+      tags: ["SystemVerilog", "Vivado XSIM", "SoC Integration", "UART", "Bus Architecture", "Boot Flow"],
+      details: "#placeholder"
+    },
+    {
+      title: "Protocol Expansion on the NSoC",
+      status: "Planned",
+      hide: true,
+      summary: "NSoC integration layer adding protocol controllers such as GPIO, PWM, I2C, SPI, and Ethernet through a shared register and interrupt framework. The design extends the memory-mapped subsystem while preserving common control, status visibility, and bus-connected peripheral access.",
+      tags: ["SystemVerilog", "Vivado XSIM", "MMIO", "GPIO/PWM", "I2C/SPI", "Ethernet"],
+      details: "#placeholder"
+    }
+  ]
+},
+{
+  id: "low-power-design",
+  title: "Low-Power Design",
+  description: "Clock gating, retention, idle-state control, power-aware architecture, and low-power memory work.",
+  projects: [
+    {
+      title: "Glitchfree Clock gating",
+      status: "Built",
+      summary: "Clock-gating RTL controlling clock propagation with an enable path while preventing spurious pulses during switching. The design validates gated-clock behavior around enable transitions, checks edge integrity, and confirms functional clock delivery only when gating conditions are satisfied.",
+      tags: ["SystemVerilog", "Vivado XSIM", "Clock Gating", "Low-Power RTL", "Glitch Checks"],
+      details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/low_power/LPD1_clock_gating_intro"
+    },
+    {
+      title: "Sleep/idle controller FSM + wake sources",
+      status: "Planned",
+      hide: true,
+      summary: "Power-state controller FSM managing active, idle, and sleep transitions with wake-event handling. The design sequences state entry and exit, arbitrates wake sources, and restores functional operation through controlled enable, status, and resume paths.",
+      tags: ["SystemVerilog", "Vivado XSIM", "FSM Design", "Power-State Control", "Wake-Up Sequencing"],
+      details: "#placeholder"
+    },
+    {
+      title: "Retention register file + save/restore sequencing",
+      status: "Planned",
+      hide: true,
+      summary: "Retention-aware register file preserving architectural state through save and restore sequencing across low-power entry and wake-up events. The design coordinates retention control, state capture, restoration ordering, and functional reactivation without corrupting stored data.",
+      tags: ["SystemVerilog", "Vivado XSIM", "Register File Design", "State Retention", "Save/Restore Sequencing"],
+      details: "#placeholder"
+    },
+    {
+      title: "Multi-mode clocks + safe switching protocol",
+      status: "Planned",
+      hide: true,
+      summary: "Clock-management block generating multiple operating modes through division and controlled clock selection. The design handles mode changes with safe switching logic, preventing glitches, runt pulses, and timing corruption during dynamic clock-source or frequency transitions.",
+      tags: ["SystemVerilog", "Vivado XSIM", "Clock Switching", "Clock Division", "Glitch-Free Control"],
+      details: "#placeholder"
+    },
+    {
+      title: "Power-aware microarchitecture",
+      status: "Planned",
+      hide: true,
+      summary: "Microarchitecture layer applying idle detection, block-level activity control, and domain-specific clock management to reduce unnecessary switching. The design derives enable conditions from workload behavior and coordinates gated operation across functional regions without violating architectural correctness.",
+      tags: ["SystemVerilog", "Vivado XSIM", "Clock Gating", "Idle Detection", "Power-Aware Microarchitecture"],
+      details: "#placeholder"
+    },
+    {
+      title: "Low-Power 8-Input AND Gate Using Dual-Vt Domino Logic",
+      status: "Built",
+      hide: false,
+      summary: "Transistor-level 8-input AND gate comparing standard domino and dual-Vt domino implementations for delay, power, and leakage behavior. The design analyzes logic evaluation, threshold-voltage assignment, and tradeoffs between switching performance and standby-power reduction.",
+      tags: ["Cadence", "Dual-Vt", "Domino Logic", "Transistor-Level Design", "Leakage Reduction"],
+      details: "8 input AND Gate.pdf"
+    },
+    {
+      title: "UPF-like power intent doc + assertion enforcement",
+      status: "Planned",
+      hide: true,
+      summary: "Power-intent specification describing domain states, isolation expectations, retention rules, and control sequencing for low-power operation. The flow pairs intent documentation with assertion-based checks to verify that RTL power-control behavior follows defined domain and state-transition rules.",
+      tags: ["SystemVerilog", "SVA", "Power Intent", "Isolation Rules", "Retention Rules"],
+      details: "#placeholder"
+    },
+    {
+      title: "Multi-Domain Power Gating + Retention + Verification",
+      status: "Planned",
+      hide: true,
+      summary: "Multi-domain low-power subsystem combining power gating, retention control, domain sequencing, and verification checks. The design coordinates isolation, save or restore behavior, wake-up ordering, and domain-state correctness across interacting power-managed blocks.",
+      tags: ["SystemVerilog", "Vivado XSIM", "Power Gating", "State Retention", "Isolation Control", "Low-Power Verification"],
+      details: "#placeholder"
+    },
+    {
+      title: "Energy-Aware Microarchitecture with DVFS",
+      status: "Planned",
+      hide: true,
+      summary: "Microarchitecture with dynamic voltage and frequency scaling control tied to workload-driven operating modes. The design models performance and energy tradeoffs, changes clock-frequency or voltage modes, and evaluates behavior under power-aware control policies.",
+      tags: ["SystemVerilog", "DVFS", "Power-Aware Microarchitecture", "Clock/Frequency Control", "Energy Modeling"],
+      details: "#placeholder"
+    },
+    {
+      title: "Low Power Layer on the NSoC Base Platform",
+      status: "Planned",
+      hide: true,
+      summary: "Low-power extension to the NSoC base adding clock-enable control, idle-state handling, retention planning, and wake-up sequencing. The design integrates power-aware control into software-visible subsystem behavior while preserving register access, local state, and event-driven operation.",
+      tags: ["SystemVerilog", "Vivado XSIM", "Clock Gating", "State Retention", "Wake-Up Control", "NSoC"],
+      details: "#placeholder"
+    },
+    {
+      title: "Low-Power 10T SRAM Using Sleep Transistors and Drain Gating",
+      status: "Built",
+      summary: "10T SRAM bitcell using sleep transistors and drain gating to reduce leakage while preserving read, write, and hold behavior. The design evaluates delay, static-power reduction, retention characteristics, and stability tradeoffs under low-power operating conditions.",
+      tags: ["Cadence Virtuoso", "SRAM", "Sleep Transistors", "Drain Gating", "Transistor-Level Design", "Leakage Reduction"],
+      details: "10T SRAM.pdf"
+    }
+  ]
+},
+{
+  id: "physical-design",
+  title: "Physical Design",
+  description: "Synthesis, floorplanning, CTS, signoff evidence, and report-reading progression.",
+  projects: [
+    {
+      title: "Constraint-First STA Sprint",
+      status: "Built",
+      summary: "Timing-analysis flow centered on constraint definition, synthesis, and report inspection. The project applies clocks and timing exceptions, runs synthesis and STA, and analyzes setup or hold paths, slack, and timing-report behavior to connect RTL structure with timing outcomes.",
+      tags: ["TCL", "SDC", "STA", "Synthesis", "Timing Report Analysis"],
+      details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/physical_design/PD1_constraint_first_sta_sprint"
+    },
+    {
+      title: "RTL-to-GDS Deep Dive",
+      status: "Planned",
+      hide: true,
+      summary: "Physical-design flow taking RTL through synthesis, floorplanning, placement, CTS, routing, and final report inspection. The project tracks how implementation stages affect area, timing, congestion, and power across an end-to-end backend run.",
+      tags: ["OpenLane", "OpenROAD", "TCL", "RTL-to-GDS", "Backend Flow"],
+      details: "#placeholder"
+    },
+    {
+      title: "Floorplan Parameter Sweep Lab",
+      status: "Planned",
+      hide: true,
+      summary: "Floorplanning study varying utilization, aspect ratio, and macro placement to observe congestion, routing pressure, and timing impact. The project compares layout outcomes across parameter sweeps and relates floorplan choices to downstream implementation behavior.",
+      tags: ["OpenROAD", "TCL", "Floorplanning", "Congestion Analysis", "QoR Analysis"],
+      details: "#placeholder"
+    },
+    {
+      title: "Timing Closure Clinic",
+      status: "Planned",
+      hide: true,
+      summary: "Timing-closure flow iterating constraints and RTL structure to improve setup and hold results. The project compares WNS and TNS across changes such as pipelining, path cleanup, and constraint refinement to understand closure-driven design decisions.",
+      tags: ["TCL", "SDC", "STA", "Timing Closure", "WNS/TNS Analysis"],
+      details: "#placeholder"
+    },
+    {
+      title: "CTS Tradeoff Explorer",
+      status: "Planned",
+      hide: true,
+      summary: "Clock-tree study analyzing skew, insertion delay, buffer usage, and clock-distribution effects after CTS. The project compares CTS strategies and examines how clock-tree decisions influence timing balance, routing overhead, and downstream implementation quality.",
+      tags: ["OpenROAD", "TCL", "CTS", "Clock Tree Analysis", "Timing Analysis"],
+      details: "#placeholder"
+    },
+    {
+      title: "Signoff Evidence Packet Builder",
+      status: "Planned",
+      hide: true,
+      summary: "Signoff-oriented flow organizing DRC, LVS, timing, and implementation reports into a reviewable evidence package. The project emphasizes extraction of key checks, report interpretation, and packaging of artifacts needed to assess physical-design readiness.",
+      tags: ["TCL", "DRC", "LVS", "STA", "Signoff Reporting"],
+      details: "#placeholder"
+    },
+    {
+      title: "Tapeout-Style Release Candidate Builder",
+      status: "Planned",
+      hide: true,
+      summary: "Release-candidate implementation flow combining PDN generation, extraction-aware checks, timing review, and signoff-style artifact collection. The project assembles backend outputs and report evidence needed to evaluate a design at a tapeout-style checkpoint.",
+      tags: ["OpenLane", "OpenROAD", "TCL", "PDN", "Signoff", "Tapeout Flow"],
+      details: "#placeholder"
+    }
+  ]
+},
+{
+  id: "timing-sta",
+  title: "Timing / STA / Signoff",
+  description: "Constraint writing, path review, timing cleanup, and implementation-aware report reading.",
+  projects: [
+    {
+      title: "Constraint-First STA Sprint",
+      status: "Built",
+      summary: "Timing-analysis flow applying clock and path constraints, running synthesis and STA, and reviewing setup or hold reports. The project examines slack, path structure, and timing violations to connect constraint definition with implementation-visible timing behavior.",
+      tags: ["TCL", "SDC", "STA", "Synthesis", "Timing Report Analysis"],
+      details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/timing_sta/FV1_constraint_first_sta_sprint"
+    },
+    {
+      title: "UART-to-Ethernet Bridge on KC705",
+      status: "Built",
+      summary: "Interface implementation constrained with SDC timing definitions and analyzed through STA across UART and Ethernet data paths. The project reviews path timing, clock relationships, and closure behavior to maintain reliable communication under configured operating conditions.",
+      tags: ["Verilog", "SDC", "STA", "Xilinx KC705", "Timing Closure"],
+      details: "UART-to-Ethernet two-way communication.pdf"
+    },
+    {
+      title: "Timing & Sign-off Awareness Pass",
+      status: "Planned",
+      hide: true,
+      summary: "Timing-refinement flow covering constraint cleanup, critical-path review, QoR inspection, and timing-driven RTL updates. The project targets setup or hold-sensitive structures and uses implementation reports to guide signoff-aware design correction.",
+      tags: ["SystemVerilog", "SDC", "STA", "QoR Analysis", "Timing-Driven RTL"],
+      details: "#placeholder"
+    }
+  ]
+},
+{
+  id: "memory-systems",
+  title: "Memory Systems",
+  description: "SRAM design, stability analysis, parasitics, and memory-aware implementation work.",
+  projects: [
+    {
+      title: "Implementation of 6T SRAM Cell using ASAP7 7nm Technology",
+      status: "Built",
+      summary: "6T SRAM bitcell designed and analyzed in ASAP7 7nm with parasitic-aware evaluation of read, write, and hold behavior. The work examines static noise margin, access stability, and operating margins across core memory states.",
+      tags: ["ASAP7 7nm", "SRAM", "Parasitic Extraction", "SNM Analysis", "Transistor-Level Design"],
+      details: "6T SRAM.pdf"
+    },
+    {
+      title: "Low-Power 10T SRAM Using Sleep Transistors and Drain Gating",
+      status: "Built",
+      summary: "10T SRAM bitcell using sleep transistors and drain gating to reduce leakage while preserving read, write, and hold operation. The work evaluates delay, static power, retention behavior, and stability under low-power operating conditions.",
+      tags: ["SRAM", "Sleep Transistors", "Drain Gating", "Leakage Reduction", "Stability Analysis"],
+      details: "10T SRAM.pdf"
+    }
+  ]
+},
+{
+  id: "hardware-acceleration",
+  title: "Hardware Acceleration & FPGA",
+  description: "Accelerator microarchitecture, HLS, FPGA inference, and performance-oriented architecture studies.",
+  projects: [
+    {
+      title: "Accelerator-Ready NSoC with UA-Lite",
+      status: "Planned",
+      hide: true,
+      summary: "NSoC extension adding descriptor-based command handling, DMA-style data movement, scratchpad buffering, telemetry counters, and UA-Lite integration. The design connects software-visible control with accelerator-facing data paths for command dispatch, local storage access, and transfer tracking.",
+      tags: ["SystemVerilog", "Vivado XSIM", "DMA-Style Movement", "Scratchpad Buffering", "Accelerator Integration"],
+      details: "#placeholder"
+    },
+    {
+      title: "FPGA-based Systolic Array Hardware Accelerator Design of VGG11",
+      status: "Built",
+      summary: "VGG11 accelerator implemented in Vitis HLS using systolic-array compute, loop pipelining, unrolling, tiling, and AXI-based data movement. The design maps convolution workloads to FPGA hardware and evaluates latency, throughput, and resource tradeoffs through synthesis and QoR analysis.",
+      tags: ["C++", "Vitis HLS", "FPGA", "AXI", "Systolic Array", "QoR Analysis"],
+      details: "https://github.com/sudhanvi-vakul/vgg11-fpga-accelerator"
+    },
+    {
+      title: "System Exploration — Swish vs ReLU in Apache TVM",
+      status: "Built",
+      summary: "Apache TVM performance study comparing Swish and ReLU through compiler lowering, code generation, and benchmark execution. The work analyzes activation-function cost, operator behavior, and runtime impact within a hardware-aware compilation and optimization flow.",
+      tags: ["Python", "Apache TVM", "LLVM", "Benchmarking", "Compiler Optimization"],
+      details: "https://github.com/sudhanvi-vakul/system-exploration"
+    }
+  ]
+},
+{
+  id: "dft-test",
+  title: "DFT & Production Test",
+  description: "Future scan, JTAG, BIST, and ATPG-oriented work once the core RTL and SoC platform mature.",
+  projects: [
+    {
+      title: "Scan chain + JTAG bring-up lab",
+      status: "Planned",
+      hide: true,
+      summary: "DFT-focused flow implementing scan insertion, scan-shift and capture operation, and JTAG-based test access to internal registers or scan paths. The design exercises controllability, observability, and shift-based test movement needed for structural test visibility.",
+      tags: ["SystemVerilog", "JTAG", "Scan Chain", "DFT", "Structural Test"],
+      details: "#placeholder"
+    }
+  ]
+}
     ];
 
-    const additionalProjects = [
-      { title: "Object Detection Using DINO-DETR", status: "Built", summary: "Transformer-based object-detection benchmarking across DAB-DETR, DN-DETR, and DINO-DETR.", tags: ["PyTorch", "DINO-DETR", "Computer Vision"], details: "DAB-DN-Dino-DETR.pdf" },
-      { title: "Image Classification Using YOLOv2 on ImageNet-1K", status: "Built", summary: "GPU training and evaluation pipeline analyzing accuracy vs compute-latency trade-offs.", tags: ["YOLOv2", "ImageNet", "GPU"] },
-      { title: "Smartphone Controlled Arduino Bluetooth Robot Car", status: "Built", summary: "Embedded control stack using UART Bluetooth, PWM motor control, and obstacle-avoidance behavior.", tags: ["Arduino", "Bluetooth", "PWM"]},
-      { title: "Through-Wall Object Detection Using RADAR", status: "Built", summary: "MATLAB radar study covering attenuation, scattering, and Doppler behavior under obstruction.", tags: ["MATLAB", "Radar", "Signal Processing"] },
-      { title: "Extraction of Audio from Visual Information", status: "Study Project", hide: true, summary: "Research-replication style study on audio recovery from subtle visual vibration cues.", tags: ["Computer Vision", "Audio", "Research"]}
-    ];
+const additionalProjects = [
+  {
+    title: "Object Detection Using DINO-DETR",
+    status: "Built",
+    summary: "Object-detection study comparing DAB-DETR, DN-DETR, and DINO-DETR on detection accuracy, convergence behavior, and prediction quality. The work runs training and evaluation pipelines, analyzes transformer-based detection outputs, and compares model behavior across related DETR variants.",
+    tags: ["Python", "PyTorch", "DINO-DETR", "DAB-DETR", "DN-DETR", "Object Detection"],
+    details: "DAB-DN-Dino-DETR.pdf"
+  },
+  {
+    title: "Image Classification Using YOLOv2 on ImageNet-1K",
+    status: "Built",
+    summary: "Image-classification pipeline training and evaluating YOLOv2 on ImageNet-1K. The work measures accuracy, loss behavior, and compute-latency tradeoffs under GPU execution while tracking model performance across training and inference stages.",
+    tags: ["Python", "PyTorch", "YOLOv2", "ImageNet-1K", "GPU", "Image Classification"]
+  },
+  {
+    title: "Smartphone Controlled Arduino Bluetooth Robot Car",
+    status: "Built",
+    summary: "Embedded control system linking smartphone commands to an Arduino-based robot car through Bluetooth UART communication. The design controls motor direction and speed through PWM and executes obstacle-aware movement using onboard sensing and command-driven actuation.",
+    tags: ["Arduino", "Embedded C", "Bluetooth", "UART", "PWM", "Motor Control"]
+  },
+  {
+    title: "Through-Wall Object Detection Using RADAR",
+    status: "Built",
+    summary: "Radar signal-processing study modeling through-wall target detection under attenuation, scattering, and Doppler effects. The work analyzes reflected signals in obstructed environments to study target observability and detection behavior under wall-induced distortion. MATLAB radar study covering attenuation, scattering, and Doppler behavior under obstruction.",
+    tags: ["MATLAB", "RADAR", "Signal Processing", "Doppler Analysis", "Target Detection"]
+  },
+  {
+    title: "Extraction of Audio from Visual Information",
+    status: "Study Project",
+    hide: true,
+    summary: "Vision-based signal-recovery study reconstructing audio information from subtle visual vibrations in recorded imagery. The work analyzes motion cues frame by frame to estimate vibration patterns and recover audio-correlated information from visual input.",
+    tags: ["Python", "Computer Vision", "Signal Processing", "Video Analysis", "Audio Reconstruction"]
+  }
+];
 
     const connectionGraph = (() => {
       const makeId = (text) =>
@@ -1317,23 +1904,29 @@
       roadmapGrid.appendChild(el);
     });
 
-    function buildProjectCard(project) {
-      return `
-        <article class="project-card">
-          <div class="project-top">
-            <h4 class="project-title">${project.title}</h4>
-            <span class="status">${project.status}</span>
-          </div>
-          <p class="project-desc">${project.summary}</p>
-          <div class="chip-row">
-            ${project.tags.map(tag => `<span class="chip">${tag}</span>`).join("")}
-          </div>
-          <div class="project-links">
-            <a class="btn ghost" href="${project.details || placeholder}" target="_blank" rel="noreferrer">Details</a>
-          </div>
-        </article>
-      `;
-    }
+function buildProjectCard(project) {
+  return `
+    <article class="project-card">
+      <div class="project-top">
+        <h4 class="project-title">${project.title}</h4>
+        <span class="status">${project.status}</span>
+      </div>
+      <p class="project-desc">${project.summary}</p>
+      <div class="chip-row">
+        ${project.tags.map(tag => `<span class="chip">${tag}</span>`).join("")}
+      </div>
+      ${
+        project.details
+          ? `
+      <div class="project-links">
+        <a class="btn ghost" href="${project.details}" target="_blank" rel="noreferrer">Details</a>
+      </div>
+      `
+          : ``
+      }
+    </article>
+  `;
+}
 
     const projectSections = document.getElementById("projectSections");
     activeSections.forEach(section => {
