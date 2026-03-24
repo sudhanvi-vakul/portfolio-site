@@ -28,7 +28,7 @@
       --muted: #b2b2b2;
       --muted-2: #8d8d8d;
       --accent: #ffffff;
-      --active-bg: linear-gradient(180deg, #ffffff, #dddddd);
+      --active-bg: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.3));
       --active-text: #000000;
       --inactive-bg: rgba(255,255,255,0.02);
       --grid: rgba(255,255,255,0.014);
@@ -954,7 +954,6 @@
       <div class="wrap">
         <div class="section-head">
           <div><h2>VLSI Design &amp; Verification Roadmap</h2></div>
-          <p>All major VLSI categories are shown here. Categories with current work are highlighted and clickable.</p>
         </div>
         <div class="panel roadmap-shell">
           <div class="roadmap-grid" id="roadmapGrid"></div>
@@ -970,7 +969,6 @@
       <div class="wrap">
         <div class="section-head">
           <div><h2>Projects by Category</h2></div>
-          <p>VLSIVault tracks are included here, along with related portfolio work from your broader design and acceleration projects.</p>
         </div>
         <div class="category-stack" id="projectSections"></div>
       </div>
@@ -980,7 +978,6 @@
       <div class="wrap">
         <div class="section-head">
           <div><h2>Additional Technical Projects</h2></div>
-          <p>These stay visible without weakening the main VLSI roadmap signal.</p>
         </div>
         <div class="additional-shell">
           <div class="project-grid" id="additionalProjects"></div>
@@ -994,7 +991,7 @@
           <div class="section-head" style="margin-bottom: 14px;">
             <div><h2>Roadmap Connections</h2></div>
           </div>
-          <p class="map-caption">Hover a roadmap category to trace only the currently visible project names connected to it.</p>
+          <p class="map-caption">Hover a roadmap category to trace only related projects</p>
           <div class="connection-map" id="roadmapConnectionMap">
             <svg class="connection-svg" id="connectionSvg" aria-hidden="true"></svg>
             <div class="connection-column">
