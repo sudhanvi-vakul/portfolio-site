@@ -1196,18 +1196,17 @@ const roadmap = [
     },
     {
       title: "Parametric ALU with Self-Checking Testbench",
-      status: "Built",
+      status: "Guided",
       summary: "Parameterized combinational ALU implementing arithmetic and logical operations with configurable data width and operation decoding. The RTL organizes datapath logic for reuse in larger designs while maintaining synthesizable block-level structure.",
       tags: ["SystemVerilog", "Vivado XSIM", "Parameterized Design", "Combinational RTL", "Datapath Design"],
       details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/digital_rtl/DRD1_parametric_alu"
     },
     {
       title: "Valid/Ready pipeline register slice + backpressure demos",
-      status: "Planned",
-      hide: true,
+      status: "Guided",
       summary: "Handshake-driven pipeline block demonstrating valid/ready transfer, stall propagation, and backpressure handling through register slices. The design tracks synchronous data movement, bubble behavior, and downstream flow control in pipelined paths.",
       tags: ["SystemVerilog", "Vivado XSIM", "Valid/Ready Interface", "Pipeline Design", "Backpressure Handling", "Flow Control"],
-      details: "#placeholder"
+      details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/digital_rtl/DRD2_valid_ready_slice"
     },
     {
       title: "Microcoded controller driving a datapath",
@@ -1257,28 +1256,28 @@ const roadmap = [
     },
     {
       title: "ALU/FIFO with Self-Checking and Randomized Testbench",
-      status: "Built",
+      status: "Guided",
       summary: "Self-checking testbench for ALU and FIFO DUTs using randomized stimulus, reference-result comparison, and automated pass/fail checking. The environment exercises arithmetic, logic, queue behavior, overflow or underflow conditions, and corner cases through reusable checking and stimulus generation components.",
       tags: ["Python", "cocotb", "Randomized Testing", "Scoreboarding", "Self-Checking Testbench"],
       details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/fv_cocotb/FV1_self_checking_alu_fifo"
     },
     {
       title: "Reusable cocotb Verification Kit",
-      status: "Built",
+      status: "Guided",
       summary: "Reusable cocotb verification framework with structured drivers, monitors, scoreboards, and test utilities for building consistent DUT-level testbenches. The kit standardizes transaction handling, stimulus generation, result checking, and regression organization so multiple designs can share a common Python-based verification architecture.",
       tags: ["Python", "cocotb", "Pytest", "Verification Infrastructure", "Driver-Monitor-Scoreboard"],
       details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/fv_cocotb/FV2_reusable_cocotb_kit"
     },
     {
       title: "Glitchfree Clock gating",
-      status: "Built",
+      status: "Guided",
       summary: "Verification flow for gated-clock behavior, checking that enable-controlled clock suppression does not introduce spurious pulses or incorrect edge propagation. The project exercises enable transitions around active clock edges and validates stable gated-clock output under functional switching conditions.",
       tags: ["SystemVerilog", "Vivado XSIM", "Clock Gating", "Low-Power Verification", "Glitch Checks"],
       details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/low_power/LPD1_clock_gating_intro"
     },
     {
       title: "Regression & Coverage Dashboard Builder",
-      status: "Built",
+      status: "Guided",
       summary: "Result-processing framework that collects regression outputs, organizes test status, and summarizes coverage progress into a readable dashboard. The flow converts raw simulation results into verification-facing views for pass/fail tracking, execution visibility, and coverage-oriented debug prioritization.",
       tags: ["Python", "Pandas", "HTML", "Regression Analytics", "Coverage Tracking", "Result Aggregation"],
       details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/fv_cocotb/FV3_regression_coverage_dashboard"
@@ -1309,14 +1308,14 @@ const roadmap = [
     },
     {
       title: "UVM Hello World on tiny ALU DUT",
-      status: "Built",
+      status: "Guided",
       summary: "UVM-based verification environment for an ALU DUT using sequence items, sequences, driver, monitor, agent, environment, and scoreboard components. Transactions are generated at the sequencer, driven to the DUT, observed through monitoring, and checked against expected ALU behavior.",
       tags: ["SystemVerilog", "UVM", "Questa/XSIM", "Scoreboarding", "Transaction-Level Verification"],
       details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/fv_uvm/FVU1_uvm_hello_world_alu"
     },
     {
       title: "APB UVM agent and reg read/write tests",
-      status: "Built",
+      status: "Guided",
       summary: "UVM verification environment for APB transactions with agent-level components driving and monitoring register read and write operations. The project checks protocol-compliant bus activity, request-response behavior, and register access correctness through sequence-driven stimulus and transaction-level analysis.",
       tags: ["SystemVerilog", "UVM", "APB", "Register Verification", "Bus Functional Verification"],
       details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/fv_uvm/FVU2_apb_uvm_agent"
@@ -1386,14 +1385,14 @@ const roadmap = [
   projects: [
     {
       title: "Tiny single-cycle CPU",
-      status: "Built",
+      status: "Guided",
       summary: "Single-cycle CPU executing fetch, decode, execute, memory, and writeback within one cycle. The design integrates datapath and control logic, implements instruction decoding and ALU or register-file updates, and includes an assembler flow that converts simple programs into executable machine code.",
       tags: ["SystemVerilog", "Python", "Vivado XSIM", "CPU RTL", "Instruction Decode", "Assembler"],
       details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/processor_arch/PA1_toy_cpu_single_cycle"
     },
     {
       title: "5-stage pipeline and hazards detection",
-      status: "Built",
+      status: "Guided",
       summary: "Five-stage pipelined processor with stage registers, hazard detection, stall control, flush handling, and forwarding paths. The design manages instruction movement across fetch, decode, execute, memory, and writeback while preserving correctness under data dependencies and control-flow changes.",
       tags: ["SystemVerilog", "Vivado XSIM", "Pipeline RTL", "Hazard Detection", "Stall/Flush Control", "Forwarding"],
       details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/processor_arch/PA2_5stage_pipeline"
@@ -1556,7 +1555,7 @@ const roadmap = [
   projects: [
     {
       title: "Glitchfree Clock gating",
-      status: "Built",
+      status: "Guided",
       summary: "Clock-gating RTL controlling clock propagation with an enable path while preventing spurious pulses during switching. The design validates gated-clock behavior around enable transitions, checks edge integrity, and confirms functional clock delivery only when gating conditions are satisfied.",
       tags: ["SystemVerilog", "Vivado XSIM", "Clock Gating", "Low-Power RTL", "Glitch Checks"],
       details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/low_power/LPD1_clock_gating_intro"
@@ -1649,7 +1648,7 @@ const roadmap = [
   projects: [
     {
       title: "Constraint-First STA Sprint",
-      status: "Built",
+      status: "Guided",
       summary: "Timing-analysis flow centered on constraint definition, synthesis, and report inspection. The project applies clocks and timing exceptions, runs synthesis and STA, and analyzes setup or hold paths, slack, and timing-report behavior to connect RTL structure with timing outcomes.",
       tags: ["TCL", "SDC", "STA", "Synthesis", "Timing Report Analysis"],
       details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/physical_design/PD1_constraint_first_sta_sprint"
@@ -1711,7 +1710,7 @@ const roadmap = [
   projects: [
     {
       title: "Constraint-First STA Sprint",
-      status: "Built",
+      status: "Guided",
       summary: "Timing-analysis flow applying clock and path constraints, running synthesis and STA, and reviewing setup or hold reports. The project examines slack, path structure, and timing violations to connect constraint definition with implementation-visible timing behavior.",
       tags: ["TCL", "SDC", "STA", "Synthesis", "Timing Report Analysis"],
       details: "https://github.com/sudhanvi-vakul/VLSIVault/tree/main/tracks/timing_sta/FV1_constraint_first_sta_sprint"
@@ -1829,7 +1828,6 @@ const additionalProjects = [
   {
     title: "Extraction of Audio from Visual Information",
     status: "Study Project",
-    hide: true,
     summary: "Vision-based signal-recovery study reconstructing audio information from subtle visual vibrations in recorded imagery. The work analyzes motion cues frame by frame to estimate vibration patterns and recover audio-correlated information from visual input.",
     tags: ["Python", "Computer Vision", "Signal Processing", "Video Analysis", "Audio Reconstruction"]
   }
