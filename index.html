@@ -41,28 +41,28 @@
     }
 
     body[data-theme="light"] {
-      --bg: #f7fbff;
-      --bg-alt: #eef6ff;
-      --panel: rgba(120,170,255,0.12);
-      --panel-strong: rgba(120,170,255,0.18);
-      --panel-soft: rgba(255,255,255,0.82);
-      --line: rgba(58,109,188,0.12);
-      --line-strong: rgba(58,109,188,0.22);
-      --text: #0f1b2c;
-      --muted: #4f6280;
-      --muted-2: #6d83a5;
-      --accent: #1f5ed8;
-      --active-bg: linear-gradient(180deg, rgba(31,94,216,0.18), rgba(31,94,216,0.10));
-      --active-text: #0f1b2c;
-      --inactive-bg: rgba(255,255,255,0.74);
-      --grid: rgba(67,118,202,0.04);
-      --hero-glow-1: rgba(80,148,255,0.16);
-      --hero-glow-2: rgba(80,148,255,0.10);
-      --photo-ring: rgba(31,94,216,0.18);
-      --photo-inner: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(142,190,255,0.28));
-      --toggle-bg: rgba(31,94,216,0.10);
-      --toggle-fg: #1f5ed8;
-      --shadow: 0 24px 80px rgba(51,104,188,0.12);
+      --bg: #f6f8fc;
+      --bg-alt: #eef3fb;
+      --panel: rgba(140, 173, 230, 0.10);
+      --panel-strong: rgba(126, 167, 236, 0.16);
+      --panel-soft: rgba(255, 255, 255, 0.78);
+      --line: rgba(95, 130, 190, 0.16);
+      --line-strong: rgba(95, 130, 190, 0.28);
+      --text: #132238;
+      --muted: #5d7090;
+      --muted-2: #7688a4;
+      --accent: #5f8fe8;
+      --active-bg: linear-gradient(180deg, rgba(220, 232, 255, 0.96), rgba(241, 247, 255, 0.90));
+      --active-text: #132238;
+      --inactive-bg: rgba(255, 255, 255, 0.68);
+      --grid: rgba(95, 143, 232, 0.035);
+      --hero-glow-1: rgba(111, 168, 255, 0.14);
+      --hero-glow-2: rgba(138, 120, 255, 0.08);
+      --photo-ring: rgba(95, 143, 232, 0.22);
+      --photo-inner: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(201, 221, 255, 0.30));
+      --toggle-bg: rgba(95, 143, 232, 0.10);
+      --toggle-fg: #4d79d8;
+      --shadow: 0 18px 50px rgba(76, 108, 168, 0.10);
     }
 
     * { box-sizing: border-box; }
@@ -183,8 +183,8 @@
       font-weight: 600;
     }
 
-    main section { padding: 34px 0; }
-    .hero { padding: 70px 0 26px; }
+    main section { padding: 24px 0; }
+    .hero { padding: 56px 0 18px; }
 
     .panel {
       border: 1px solid var(--line);
@@ -200,8 +200,10 @@
     .category,
     .about-card,
     .contact-card,
-    .additional-shell {
-      padding: 30px;
+    .additional-shell,
+    .filter-shell,
+    .journey-shell {
+      padding: 20px;
     }
 
     .panel::after {
@@ -399,7 +401,7 @@
       border: 1px solid var(--line);
       border-radius: var(--radius-md);
       background: color-mix(in srgb, var(--panel) 80%, transparent);
-      padding: 15px;
+      padding: 12px;
     }
 
     .quick-card strong,
@@ -446,7 +448,7 @@
     }
 
     .roadmap-card {
-      padding: 14px;
+      padding: 12px;
       border-radius: 20px;
       border: 1px solid var(--line);
       background: var(--inactive-bg);
@@ -478,9 +480,9 @@
 
     .roadmap-card.active {
       cursor: pointer;
-      background: var(--active-bg);
-      color: var(--active-text);
-      border-color: color-mix(in srgb, var(--accent) 18%, transparent);
+      background: color-mix(in srgb, var(--panel-strong) 84%, transparent);
+      color: var(--text);
+      border-color: var(--line-strong);
       box-shadow: 0 12px 34px color-mix(in srgb, var(--accent) 10%, transparent);
     }
 
@@ -526,10 +528,36 @@
 
     .category-stack {
       display: grid;
-      gap: 18px;
+      gap: 14px;
     }
 
     .category { scroll-margin-top: 96px; }
+
+    .category.is-hidden { display: none; }
+
+    .roadmap-card.is-selected {
+      outline: none;
+      background: var(--active-bg);
+      color: var(--active-text);
+      border-color: color-mix(in srgb, var(--accent) 18%, transparent);
+      box-shadow: 0 14px 36px color-mix(in srgb, var(--accent) 16%, transparent);
+    }
+
+    body[data-theme="light"] .roadmap-card.active {
+      background: linear-gradient(180deg, rgba(226, 237, 255, 0.96), rgba(242, 247, 255, 0.88));
+      color: #132238;
+      border-color: rgba(95, 143, 232, 0.34);
+      box-shadow: 0 10px 24px rgba(95, 143, 232, 0.10);
+    }
+
+    body[data-theme="light"] .roadmap-card.is-selected {
+      background: linear-gradient(180deg, rgba(185, 211, 255, 0.58), rgba(209, 226, 255, 0.42));
+      color: #132238;
+      border-color: rgba(95, 143, 232, 0.76);
+      box-shadow:
+        inset 0 0 0 1px rgba(95, 143, 232, 0.18),
+        0 12px 28px rgba(95, 143, 232, 0.14);
+    }
 
     .category-head {
       display: flex;
@@ -563,12 +591,12 @@
 
     .project-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
     }
 
     .project-card {
-      padding: 18px;
+      padding: 14px;
       border-radius: 20px;
       border: 1px solid var(--line);
       background: color-mix(in srgb, var(--panel) 76%, transparent);
@@ -821,6 +849,119 @@
       stroke-width: 2.5;
     }
 
+
+
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .education-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: color-mix(in srgb, var(--panel) 82%, transparent);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .education-card h3 {
+      margin: 0;
+      font-size: 1.04rem;
+      letter-spacing: -0.02em;
+    }
+
+    .education-degree {
+      font-weight: 600;
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    .education-meta,
+    .education-note {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .education-actions {
+      margin-top: 6px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .coursework-modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.58);
+      z-index: 300;
+      padding: 20px;
+    }
+
+    .coursework-modal.open {
+      display: flex;
+    }
+
+    .coursework-dialog {
+      width: min(760px, 100%);
+      max-height: min(78vh, 760px);
+      overflow: auto;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, var(--bg-alt), var(--bg));
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    .coursework-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: start;
+      margin-bottom: 14px;
+    }
+
+    .coursework-top h3 {
+      margin: 0 0 4px;
+      font-size: 1.1rem;
+    }
+
+    .coursework-top p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .coursework-close {
+      min-height: 38px;
+      min-width: 38px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--panel) 80%, transparent);
+      color: var(--text);
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .coursework-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .coursework-item {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: color-mix(in srgb, var(--panel) 78%, transparent);
+      padding: 11px 12px;
+      color: var(--text);
+      font-size: 0.92rem;
+    }
     .footer {
       padding: 42px 0 60px;
       color: var(--muted);
@@ -828,11 +969,220 @@
       font-size: 0.94rem;
     }
 
-    @media (max-width: 1220px) {
+    .filter-shell {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--panel), var(--panel-soft));
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+    }
+
+    .compact-head {
+      margin-bottom: 12px;
+    }
+
+    .compact-shell {
+      padding: 14px;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .compact-toolbar {
+      margin-bottom: 10px;
+    }
+
+    .filter-chip {
+      min-height: 34px;
+      padding: 0 12px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--panel) 76%, transparent);
+      color: var(--muted);
+      cursor: pointer;
+      font: inherit;
+      transition: var(--transition);
+    }
+
+    .filter-chip:hover {
+      color: var(--text);
+      border-color: var(--line-strong);
+      background: color-mix(in srgb, var(--panel-strong) 84%, transparent);
+    }
+
+    .filter-chip.active {
+      background: var(--active-bg);
+      color: var(--active-text);
+      border-color: transparent;
+    }
+
+    .mini-card-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .compact-grid {
+      gap: 10px;
+    }
+
+    .mini-card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: color-mix(in srgb, var(--panel) 80%, transparent);
+      padding: 10px 12px;
+      min-height: 58px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 3px;
+    }
+
+    .mini-card h3 {
+      margin: 0;
+      font-size: 0.98rem;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+
+    .mini-card p {
+      margin: 0;
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.2;
+    }
+
+    .detail-card-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .compact-detail-grid {
+      gap: 10px;
+    }
+
+    .detail-card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: color-mix(in srgb, var(--panel) 80%, transparent);
+      padding: 10px 12px;
+      min-height: 54px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .detail-card span {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted-2);
+    }
+
+    .detail-card h3 {
+      margin: 0;
+      font-size: 0.94rem;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+    }
+
+    .detail-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.3;
+    }
+
+    .category.is-hidden,
+    .additional-hidden {
+      display: none !important;
+    }
+
+
+    .journey-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .journey-item {
+      display: grid;
+      grid-template-columns: 150px 18px 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .journey-date {
+      color: var(--muted);
+      font-size: 0.9rem;
+      padding-top: 2px;
+    }
+
+    .journey-track {
+      position: relative;
+      min-height: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .journey-track::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: -14px;
+      width: 1px;
+      background: var(--line-strong);
+    }
+
+    .journey-item:last-child .journey-track::before {
+      bottom: 50%;
+    }
+
+    .journey-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+      position: relative;
+      z-index: 1;
+      margin-top: 5px;
+    }
+
+    .journey-card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: color-mix(in srgb, var(--panel) 80%, transparent);
+      padding: 12px 14px;
+    }
+
+    .journey-card h3 {
+      margin: 0;
+      font-size: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .journey-org {
+      color: var(--muted);
+      margin-top: 2px;
+      font-size: 0.92rem;
+    }
+
+    .journey-note {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+@media (max-width: 1220px) {
       .hero-layout,
       .about-grid,
-      .roadmap-grid,
-      .project-grid {
+      .roadmap-grid {
         grid-template-columns: 1fr;
       }
 
@@ -842,6 +1192,10 @@
 
       .portrait-shell {
         min-height: 360px;
+      }
+
+      .project-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
@@ -867,7 +1221,8 @@
       .quick-grid,
       .roadmap-grid,
       .project-grid,
-      .about-grid { grid-template-columns: 1fr; }
+      .about-grid,
+      .mini-card-grid { grid-template-columns: 1fr; }
 
       .connection-map {
         grid-template-columns: 1fr;
@@ -887,6 +1242,15 @@
       .section-head { flex-direction: column; align-items: start; }
 
       .portrait-shell { min-height: 300px; }
+
+      .journey-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .journey-track {
+        display: none;
+      }
     }
   </style>
 </head>
@@ -900,8 +1264,13 @@
       <div class="nav-right">
         <nav class="nav-links" aria-label="Primary navigation">
           <a href="#home">Home</a>
+          <a href="#languages">Languages</a>
+          <a href="#tools">Tools</a>
+          <a href="#skills">Skills</a>
           <a href="#roadmap">Roadmap</a>
           <a href="#projects">Projects</a>
+          <a href="#journey">Experience</a>
+          <a href="#education">Education</a>
           <a href="#contact">Contact</a>
         </nav>
         <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark and light mode">
@@ -921,11 +1290,11 @@
               <div class="eyebrow">RTL • Design • Verification • FPGA • Low-Power • Memory</div>
               <h1>Sudhanvi Vakul<br />Vakulabharanam</h1>
               <p class="lead">
-                VLSI engineer focused on RTL design and verification, with hands-on experience in building robust digital systems from microarchitecture to validation. My work spans SystemVerilog RTL, CDC/reset-safe design, functional verification, SoC and bus integration, protocol development, FPGA acceleration, and implementation-aware hardware design. Through my portfolio and VLSIVault projects, I aim to build hardware that is not only functionally correct, but also structured, scalable, and engineer-friendly. I am especially interested in roles involving RTL design, design verification, and digital system architecture, where strong fundamentals, disciplined execution, and clear technical storytelling are equally valued.
+                Seeking RTL/Digital design & Verification, ASIC/SoC/FPGA-oriented hardware roles.
               </p>
               <div class="actions">
-                <a class="btn primary" href="#roadmap">Explore roadmap</a>
-                <a class="btn secondary" href="#projects">View projects</a>
+                <a class="btn primary" href="#projects">View projects</a>
+                <a class="btn secondary" href="#journey">View journey</a>
               </div>
               <div class="preview-row">
                 <a class="btn ghost" href="resume.pdf" target="_blank" rel="noreferrer">Preview Resume</a>
@@ -954,10 +1323,54 @@
       </div>
     </section>
 
+    <section id="languages">
+      <div class="wrap">
+        <div class="section-head compact-head">
+          <div>
+            <h2>Languages</h2>
+          </div>
+        </div>
+        <div class="panel filter-shell compact-shell">
+          <div class="toolbar compact-toolbar" id="languageFilters"></div>
+          <div class="mini-card-grid compact-grid" id="languageGrid"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tools">
+      <div class="wrap">
+        <div class="section-head compact-head">
+          <div>
+            <h2>Tools</h2>
+          </div>
+        </div>
+        <div class="panel filter-shell compact-shell">
+          <div class="toolbar compact-toolbar" id="toolFilters"></div>
+          <div class="mini-card-grid compact-grid" id="toolGrid"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="wrap">
+        <div class="section-head compact-head">
+          <div>
+            <h2>Skills</h2>
+          </div>
+        </div>
+        <div class="panel filter-shell compact-shell">
+          <div class="toolbar compact-toolbar" id="skillRoadmapFilters"></div>
+          <div class="toolbar compact-toolbar" id="skillDomainFilters"></div>
+          <div class="mini-card-grid compact-grid" id="skillGrid"></div>
+        </div>
+      </div>
+    </section>
+
     <section id="roadmap">
       <div class="wrap">
         <div class="section-head">
           <div><h2>VLSI Design &amp; Verification Roadmap</h2></div>
+          <p>Click on a category to trace related projects or else all categorires are displayed.</p>
         </div>
         <div class="panel roadmap-shell">
           <div class="roadmap-grid" id="roadmapGrid"></div>
@@ -988,6 +1401,47 @@
         </div>
       </div>
     </section>
+
+    <section id="journey">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Journey</h2>
+            <p>My technical path so far.</p>
+          </div>
+        </div>
+        <div class="panel journey-shell">
+          <div class="journey-list" id="journeyList"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Education</h2>
+            <p>Academic foundation in electronics, VLSI, and computer architecture.</p>
+          </div>
+        </div>
+        <div class="panel compact-shell">
+          <div class="education-grid" id="educationGrid"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="coursework-modal" id="courseworkModal" aria-hidden="true">
+      <div class="coursework-dialog" role="dialog" aria-modal="true" aria-labelledby="courseworkTitle">
+        <div class="coursework-top">
+          <div>
+            <h3 id="courseworkTitle">Coursework</h3>
+            <p id="courseworkSubtitle"></p>
+          </div>
+          <button class="coursework-close" id="courseworkClose" type="button" aria-label="Close coursework popup">×</button>
+        </div>
+        <div class="coursework-list" id="courseworkList"></div>
+      </div>
+    </div>
 
     <section id="contact">
       <div class="wrap about-grid">
@@ -1063,7 +1517,192 @@
   <script>
     const placeholder = "#placeholder";
 
-    
+    const knowledgeCategories = [
+      "RTL Design",
+      "Microarchitecture",
+      "SoC Integration",
+      "Verification",
+      "Interfaces",
+      "FPGA",
+      "Hardware Acceleration",
+      "Implementation",
+      "Automation",
+      "Low Power",
+      "RF Analysis"
+    ];
+
+    const languageCatalog = [
+      { name: "SystemVerilog", categories: ["RTL Design", "Microarchitecture", "SoC Integration", "Verification", "Low Power", "Interfaces", "FPGA"] },
+      { name: "Verilog", categories: ["RTL Design", "Interfaces", "FPGA"] },
+      { name: "VHDL", categories: ["RTL Design"] },
+      { name: "Python", categories: ["Verification", "Hardware Acceleration", "Automation", "RF Analysis"] },
+      { name: "C++", categories: ["Microarchitecture", "Hardware Acceleration"] },
+      { name: "Tcl", categories: ["Implementation", "Verification"] },
+      { name: "Embedded C", categories: ["FPGA", "Interfaces", "Hardware Acceleration"] },
+      { name: "SQL", categories: ["Automation"] },
+      { name: "MATLAB", categories: ["Low Power", "Automation", "RF Analysis"] }
+    ];
+
+    const toolCatalog = [
+      { name: "Xilinx Vivado", categories: ["RTL Design", "FPGA", "Implementation", "Interfaces", "Hardware Acceleration"] },
+      { name: "XSIM", categories: ["RTL Design", "Verification"] },
+      { name: "ModelSim", categories: ["RTL Design", "Verification"] },
+      { name: "Verilator", categories: ["RTL Design", "Verification"] },
+      { name: "GTKWave", categories: ["RTL Design","Verification", "FPGA"] },
+      { name: "VCS", categories: ["RTL Design", "Verification"] },
+      { name: "OpenSTA", categories: ["RTL Design", "Implementation"] },
+      { name: "Yosys", categories: ["RTL Design", "Implementation"] },
+      { name: "Synopsys Design Compiler", categories: ["RTL Design", "Implementation"] },
+      { name: "Vivado IP Integrator", categories: ["SoC Integration", "Interfaces", "FPGA"] },
+      { name: "Vitis HLS", categories: ["Microarchitecture", "SoC Integration", "Hardware Acceleration"] },
+      { name: "Cadence Virtuoso", categories: ["Microarchitecture", "Low Power"] },
+      { name: "Spectre", categories: ["Low Power", "Verification"] },
+      { name: "HSPICE", categories: ["Low Power", "Verification"] },
+      { name: "Git", categories: ["RTL Design", "Verification", "Automation"] },
+      { name: "TeraTerm", categories: ["Interfaces", "Verification", "FPGA"] },
+      { name: "Wireshark", categories: ["Interfaces", "Verification", "FPGA"] },
+      { name: "JTAG", categories: ["FPGA", "Verification"] },
+      { name: "PyTorch", categories: ["Hardware Acceleration", "Automation"] }
+    ];
+
+    const skillCatalog = [
+      { roadmap: "RTL Design", domain: "Design", name: "Synthesizable RTL" },
+      { roadmap: "RTL Design", domain: "Design", name: "Module Design" },
+      { roadmap: "RTL Design", domain: "Design", name: "FSM Design" },
+      { roadmap: "RTL Design", domain: "Design", name: "Datapath Design" },
+      { roadmap: "RTL Design", domain: "Design", name: "Control Logic" },
+      { roadmap: "RTL Design", domain: "Design", name: "Multi-Clock RTL" },
+      { roadmap: "RTL Design", domain: "Design", name: "Reset-Safe RTL" },
+
+      { roadmap: "Functional Verification", domain: "Verification", name: "RTL Simulation" },
+      { roadmap: "Functional Verification", domain: "Verification", name: "Self-Checking TBs" },
+      { roadmap: "Functional Verification", domain: "Verification", name: "Randomized Testing" },
+      { roadmap: "Functional Verification", domain: "Verification", name: "Scoreboarding" },
+      { roadmap: "Functional Verification", domain: "Verification", name: "Assertions (SVA)" },
+      { roadmap: "Functional Verification", domain: "Verification", name: "cocotb" },
+      { roadmap: "Functional Verification", domain: "Verification", name: "Functional Coverage" },
+      { roadmap: "Functional Verification", domain: "Verification", name: "Regression Debug" },
+      { roadmap: "Functional Verification", domain: "Verification", name: "Waveform Debug" },
+      { roadmap: "Functional Verification", domain: "Verification", name: "UVM Basics" },
+
+      { roadmap: "Processor & Architecture", domain: "Design", name: "CPU Microarchitecture" },
+      { roadmap: "Processor & Architecture", domain: "Design", name: "Pipeline Design" },
+      { roadmap: "Processor & Architecture", domain: "Design", name: "Hazard Logic" },
+      { roadmap: "Processor & Architecture", domain: "Design", name: "MMIO Registers" },
+      { roadmap: "Processor & Architecture", domain: "Design", name: "Timer Logic" },
+      { roadmap: "Processor & Architecture", domain: "Design", name: "Interrupt Logic" },
+      { roadmap: "Processor & Architecture", domain: "Design", name: "Assembler Flow" },
+
+      { roadmap: "Communication Interfaces", domain: "Design", name: "UART Integration" },
+      { roadmap: "Communication Interfaces", domain: "Design", name: "Ethernet Integration" },
+      { roadmap: "Communication Interfaces", domain: "Design", name: "FIFO Buffering" },
+      { roadmap: "Communication Interfaces", domain: "Design", name: "Protocol Control" },
+      { roadmap: "Communication Interfaces", domain: "Design", name: "Burst-Traffic Logic" },
+      { roadmap: "Communication Interfaces", domain: "Verification", name: "TeraTerm Validation" },
+      { roadmap: "Communication Interfaces", domain: "Verification", name: "Wireshark Validation" },
+      { roadmap: "Communication Interfaces", domain: "Verification", name: "Interface Bring-Up" },
+
+      { roadmap: "SoC / Bus Integration", domain: "Design", name: "AXI Integration" },
+      { roadmap: "SoC / Bus Integration", domain: "Design", name: "APB Integration" },
+      { roadmap: "SoC / Bus Integration", domain: "Design", name: "MMIO Design" },
+      { roadmap: "SoC / Bus Integration", domain: "Design", name: "Register Maps" },
+      { roadmap: "SoC / Bus Integration", domain: "Design", name: "Subsystem Integration" },
+      { roadmap: "SoC / Bus Integration", domain: "Design", name: "BRAM Integration" },
+
+      { roadmap: "Low-Power Design", domain: "Design", name: "Clock Gating" },
+      { roadmap: "Low-Power Design", domain: "Design", name: "Power-Aware RTL" },
+      { roadmap: "Low-Power Design", domain: "Design", name: "SRAM Bitcells" },
+      { roadmap: "Low-Power Design", domain: "Design", name: "Sleep Transistors" },
+      { roadmap: "Low-Power Design", domain: "Design", name: "Drain Gating" },
+      { roadmap: "Low-Power Design", domain: "Verification", name: "Glitch Checks" },
+      { roadmap: "Low-Power Design", domain: "Verification", name: "PVT Corners" },
+      { roadmap: "Low-Power Design", domain: "Verification", name: "SNM Analysis" },
+      { roadmap: "Low-Power Design", domain: "Verification", name: "Leakage Analysis" },
+
+      { roadmap: "Physical Design", domain: "Design", name: "Constraint-First Flow" },
+      { roadmap: "Physical Design", domain: "Design", name: "Synthesis Flow" },
+      { roadmap: "Physical Design", domain: "Design", name: "QoR Reading" },
+
+      { roadmap: "Timing / STA / Signoff", domain: "Design", name: "SDC Constraints" },
+      { roadmap: "Timing / STA / Signoff", domain: "Design", name: "Static Timing Analysis" },
+      { roadmap: "Timing / STA / Signoff", domain: "Design", name: "Timing Closure" },
+      { roadmap: "Timing / STA / Signoff", domain: "Verification", name: "Timing Checks" },
+      { roadmap: "Timing / STA / Signoff", domain: "Verification", name: "CDC Checks" },
+      { roadmap: "Timing / STA / Signoff", domain: "Verification", name: "RDC Checks" },
+
+      { roadmap: "Memory Systems", domain: "Design", name: "6T SRAM" },
+      { roadmap: "Memory Systems", domain: "Design", name: "10T SRAM" },
+      { roadmap: "Memory Systems", domain: "Design", name: "Bitcell Design" },
+      { roadmap: "Memory Systems", domain: "Design", name: "FinFET SRAM" },
+      { roadmap: "Memory Systems", domain: "Verification", name: "Read/Write/Hold" },
+      { roadmap: "Memory Systems", domain: "Verification", name: "SNM Analysis" },
+      { roadmap: "Memory Systems", domain: "Verification", name: "PVT Characterization" },
+      { roadmap: "Memory Systems", domain: "Verification", name: "Leakage Analysis" },
+
+      { roadmap: "Hardware Acceleration & FPGA", domain: "Design", name: "FPGA Prototyping" },
+      { roadmap: "Hardware Acceleration & FPGA", domain: "Design", name: "Systolic Arrays" },
+      { roadmap: "Hardware Acceleration & FPGA", domain: "Design", name: "PE Architecture" },
+      { roadmap: "Hardware Acceleration & FPGA", domain: "Design", name: "AXI Interfaces" },
+      { roadmap: "Hardware Acceleration & FPGA", domain: "Design", name: "HLS Optimizations" },
+      { roadmap: "Hardware Acceleration & FPGA", domain: "Design", name: "Model Quantization" },
+      { roadmap: "Hardware Acceleration & FPGA", domain: "Verification", name: "HLS C-Simulation" },
+      { roadmap: "Hardware Acceleration & FPGA", domain: "Verification", name: "FPGA Validation" },
+      { roadmap: "Hardware Acceleration & FPGA", domain: "Verification", name: "Tensor Debug" },
+      { roadmap: "Hardware Acceleration & FPGA", domain: "Verification", name: "QoR Analysis" },
+      { roadmap: "Hardware Acceleration & FPGA", domain: "Verification", name: "Performance Benchmarks" }
+    ];
+
+    const journeyCatalog = [
+      { dates: "Sep 2025 – Present", title: "Research Hub Department Lead / Electronics Design Engineer (Full-Time Volunteer)", org: "Community Dreams Foundation", note: "Leading VLSIVault while building RTL, verification, synthesis, and implementation-aware workflows." },
+      { dates: "Sep 2024 – Feb 2025", title: "Research Assistant", org: "Illinois Institute of Technology", note: "FPGA inference workflow, hardware-software integration, experiment-driven validation, and debug." },
+      { dates: "Aug 2020 – Jul 2023", title: "System Engineer", org: "Tata Consultancy Services", note: "Python/SQL automation, reporting flows, issue tracking, and cross-functional reliability support." },
+      { dates: "Jan 2020 – Apr 2020", title: "Project Intern", org: "DRDO", note: "UART-to-Ethernet RTL, KC705 bring-up, simulation, board validation, and STA support." },
+      { dates: "Apr 2018 – Jun 2018", title: "Project Intern", org: "Bharat Dynamics Limited", note: "MATLAB radar analysis for through-wall object detection, propagation effects, and tradeoff study." }
+    ];
+
+    const educationCatalog = [
+      {
+        school: "Illinois Institute of Technology",
+        location: "Chicago, IL, USA",
+        degree: "M.S. in Electrical and Computer Engineering",
+        dates: "Aug 2023 – May 2025",
+        note: "VLSI & Microelectronics",
+        coursework: [
+          "Advanced VLSI Design Circuits",
+          "Hardware Acceleration Using Machine Learning",
+          "High Performance IC Systems",
+          "RF Integrated Circuits",
+          "Hardware Software Co-Design",
+          "Computer Architecture and Design",
+          "Digital Signal Processing",
+          "Digital Image Processing and Computer Vision",
+          "Video Processing Using Transformers"
+        ]
+      },
+      {
+        school: "Bhoj Reddy Engineering College for Women",
+        location: "Hyderabad, Telangana, India",
+        degree: "B.Tech in Electronics and Communication Engineering",
+        dates: "Jun 2016 – Sep 2020",
+        note: "Foundation across VLSI, digital ICs, analog ICs, signal processing, control systems, and computer architecture.",
+        coursework: [
+          "VLSI Design with Lab",
+          "Digital Logic Design",
+          "Digital IC Design with Lab",
+          "Analog IC Design with Lab",
+          "GPS",
+          "Optical Communication",
+          "Basic Electrical and Electronics Engineering with Lab",
+          "Digital Signal Processing with Lab",
+          "Linear IC Circuits",
+          "Micro-controllers and Micro-processors",
+          "Control Systems",
+          "Electrical Instrumentation and Equipment",
+          "Computer Architecture"
+        ]
+      }
+    ];
+
 const roadmap = [
   {
     id: "rtl-design",
@@ -1880,7 +2519,230 @@ const additionalProjects = [
     const activeSections = visibleSections.filter(section => section.projects && section.projects.length > 0);
     const visibleAdditionalProjects = additionalProjects.filter(project => !project.hide);
 
+    function uniqueCategories(items) {
+      return ["all", ...knowledgeCategories.filter(category => items.some(item => (item.categories || []).includes(category)))];
+    }
+
+    function renderFilterGroup(rootId, items, activeCategory, onSelect) {
+      const root = document.getElementById(rootId);
+      if (!root) return;
+      const categories = uniqueCategories(items);
+      root.innerHTML = categories.map(category => `
+        <button class="filter-chip ${category === activeCategory ? "active" : ""}" type="button" data-category="${category}">${category === "all" ? "All" : category}</button>
+      `).join("");
+      root.querySelectorAll(".filter-chip").forEach(button => button.addEventListener("click", () => onSelect(button.dataset.category)));
+    }
+
+    function renderMiniCards(rootId, items) {
+      const root = document.getElementById(rootId);
+      if (!root) return;
+      root.innerHTML = items.map(item => `
+        <article class="mini-card">
+          <h3>${item.name}</h3>
+        </article>
+      `).join("");
+    }
+
+    const skillRoadmapOrder = [
+      "RTL Design",
+      "Functional Verification",
+      "Processor & Architecture",
+      "Communication Interfaces",
+      "SoC / Bus Integration",
+      "Low-Power Design",
+      "Physical Design",
+      "Timing / STA / Signoff",
+      "Memory Systems",
+      "Hardware Acceleration & FPGA"
+    ];
+
+    function getAvailableSkillDomains(roadmapCategory) {
+      const scoped = skillCatalog.filter(item => item.roadmap === roadmapCategory);
+      const available = ["All"];
+      if (scoped.some(item => item.domain === "Design")) available.push("Design");
+      if (scoped.some(item => item.domain === "Verification")) available.push("Verification");
+      return available;
+    }
+
+    function renderSkillRoadmapFilters() {
+      const root = document.getElementById("skillRoadmapFilters");
+      if (!root) return;
+      const categories = skillRoadmapOrder.filter(category => skillCatalog.some(item => item.roadmap === category));
+      root.innerHTML = categories.map(category => `
+        <button class="filter-chip ${category === activeSkillRoadmap ? "active" : ""}" type="button" data-roadmap="${category}">${category}</button>
+      `).join("");
+      root.querySelectorAll(".filter-chip").forEach(button => button.addEventListener("click", () => updateSkillRoadmap(button.dataset.roadmap)));
+    }
+
+    function renderSkillDomains() {
+      const root = document.getElementById("skillDomainFilters");
+      if (!root) return;
+      const domains = getAvailableSkillDomains(activeSkillRoadmap);
+      root.innerHTML = domains.map(domain => {
+        const value = domain.toLowerCase();
+        return `<button class="filter-chip ${value === activeSkillDomain ? "active" : ""}" type="button" data-domain="${value}">${domain}</button>`;
+      }).join("");
+      root.querySelectorAll(".filter-chip").forEach(button => button.addEventListener("click", () => updateSkillDomain(button.dataset.domain)));
+    }
+
+    function renderSkillCards(items) {
+      const root = document.getElementById("skillGrid");
+      if (!root) return;
+      if (!items.length) {
+        root.innerHTML = `<article class="mini-card"><h3>No skills in this selection</h3></article>`;
+        return;
+      }
+      root.innerHTML = items.map(item => `
+        <article class="mini-card">
+          <h3>${item.name}</h3>
+        </article>
+      `).join("");
+    }
+
+    let activeLanguageCategory = "all";
+    let activeToolCategory = "all";
+    let activeSkillRoadmap = "RTL Design";
+    let activeSkillDomain = "all";
+    let activeRoadmapFilter = "all";
+
+    function updateLanguages(category = "all") {
+
+      activeLanguageCategory = category;
+      renderFilterGroup("languageFilters", languageCatalog, activeLanguageCategory, updateLanguages);
+      const filtered = activeLanguageCategory === "all"
+        ? languageCatalog
+        : languageCatalog.filter(item => item.categories.includes(activeLanguageCategory));
+      renderMiniCards("languageGrid", filtered);
+    }
+
+    function updateTools(category = "all") {
+      activeToolCategory = category;
+      renderFilterGroup("toolFilters", toolCatalog, activeToolCategory, updateTools);
+      const filtered = activeToolCategory === "all"
+        ? toolCatalog
+        : toolCatalog.filter(item => item.categories.includes(activeToolCategory));
+      renderMiniCards("toolGrid", filtered);
+    }
+
+    function updateSkillRoadmap(roadmapCategory) {
+      activeSkillRoadmap = roadmapCategory;
+      const availableDomains = getAvailableSkillDomains(activeSkillRoadmap).map(item => item.toLowerCase());
+      if (!availableDomains.includes(activeSkillDomain)) {
+        activeSkillDomain = "all";
+      }
+      updateSkills();
+    }
+
+    function updateSkillDomain(domain = "all") {
+      activeSkillDomain = domain;
+      updateSkills();
+    }
+
+    function updateSkills() {
+      const scopedItems = skillCatalog.filter(item => {
+        const roadmapMatch = item.roadmap === activeSkillRoadmap;
+        const domainMatch = activeSkillDomain === "all" || item.domain.toLowerCase() === activeSkillDomain;
+        return roadmapMatch && domainMatch;
+      });
+      renderSkillRoadmapFilters();
+      renderSkillDomains();
+      renderSkillCards(scopedItems);
+    }
+
+    function updateRoadmapFilter(categoryId = "all") {
+
+      activeRoadmapFilter = categoryId;
+      document.querySelectorAll(".category").forEach(section => {
+        const hide = activeRoadmapFilter !== "all" && section.id !== activeRoadmapFilter;
+        section.classList.toggle("is-hidden", hide);
+      });
+      const additionalSection = document.getElementById("additional-projects");
+      if (additionalSection) {
+        additionalSection.classList.toggle("additional-hidden", activeRoadmapFilter !== "all");
+      }
+      document.querySelectorAll(".roadmap-card.active").forEach(card => {
+        card.classList.toggle("is-selected", activeRoadmapFilter !== "all" && card.dataset.category === activeRoadmapFilter);
+      });
+    }
+
+    function renderJourney() {
+      const root = document.getElementById("journeyList");
+      if (!root) return;
+      root.innerHTML = journeyCatalog.map(item => `
+        <article class="journey-item">
+          <div class="journey-date">${item.dates}</div>
+          <div class="journey-track"><span class="journey-dot"></span></div>
+          <div class="journey-card">
+            <h3>${item.title}</h3>
+            <div class="journey-org">${item.org}</div>
+            <div class="journey-note">${item.note}</div>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function renderEducation() {
+      const root = document.getElementById("educationGrid");
+      if (!root) return;
+      root.innerHTML = educationCatalog.map((item, index) => `
+        <article class="education-card">
+          <h3>${item.school}</h3>
+          <div class="education-degree">${item.degree}</div>
+          <div class="education-meta">${item.location} • ${item.dates}</div>
+          <div class="education-note">${item.note}</div>
+          <div class="education-actions">
+            <button class="btn ghost coursework-trigger" type="button" data-edu-index="${index}">View Coursework</button>
+          </div>
+        </article>
+      `).join("");
+
+      root.querySelectorAll(".coursework-trigger").forEach(button => {
+        button.addEventListener("click", () => openCourseworkModal(Number(button.dataset.eduIndex)));
+      });
+    }
+
+    function openCourseworkModal(index) {
+      const modal = document.getElementById("courseworkModal");
+      const title = document.getElementById("courseworkTitle");
+      const subtitle = document.getElementById("courseworkSubtitle");
+      const list = document.getElementById("courseworkList");
+      const item = educationCatalog[index];
+      if (!modal || !title || !subtitle || !list || !item) return;
+      title.textContent = item.school;
+      subtitle.textContent = `${item.degree} • Coursework`;
+      list.innerHTML = item.coursework.map(course => `<div class="coursework-item">${course}</div>`).join("");
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeCourseworkModal() {
+      const modal = document.getElementById("courseworkModal");
+      if (!modal) return;
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+    }
+
     const roadmapGrid = document.getElementById("roadmapGrid");
+    let selectedRoadmapCategory = null;
+
+    function applyRoadmapCategoryFilter(categoryId = null) {
+      selectedRoadmapCategory = categoryId;
+
+      document.querySelectorAll("#projectSections .category").forEach(sectionEl => {
+        const shouldShow = !categoryId || sectionEl.id === categoryId;
+        sectionEl.classList.toggle("is-hidden", !shouldShow);
+      });
+
+      const additionalSection = document.getElementById("additional-projects");
+      if (additionalSection) {
+        additionalSection.classList.toggle("additional-hidden", !!categoryId);
+      }
+
+      document.querySelectorAll("#roadmapGrid .roadmap-card.active").forEach(card => {
+        card.classList.toggle("is-selected", !!categoryId && card.dataset.sectionId === categoryId);
+      });
+    }
+
     roadmap.forEach(node => {
       const section = visibleSections.find(section => section.id === node.id);
       const hasProjects = !!(section && section.projects.length > 0);
@@ -1888,8 +2750,10 @@ const additionalProjects = [
       el.className = `roadmap-card ${hasProjects ? "active" : "inactive"}`;
       if (hasProjects) {
         el.type = "button";
+        el.dataset.sectionId = node.id;
         el.addEventListener("click", () => {
-          document.getElementById(node.id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+          const nextCategory = selectedRoadmapCategory === node.id ? null : node.id;
+          applyRoadmapCategoryFilter(nextCategory);
         });
       }
       el.innerHTML = `
@@ -1944,6 +2808,8 @@ function buildProjectCard(project) {
       `;
       projectSections.appendChild(wrapper);
     });
+
+    applyRoadmapCategoryFilter();
 
     const additionalRoot = document.getElementById("additionalProjects");
     additionalRoot.innerHTML = visibleAdditionalProjects.map(buildProjectCard).join("");
@@ -2034,6 +2900,21 @@ function buildProjectCard(project) {
         node.classList.toggle("is-active", hasActive && connected);
       });
     }
+
+    updateLanguages();
+    updateTools();
+    updateSkills();
+    renderJourney();
+    renderEducation();
+    applyRoadmapCategoryFilter(null);
+
+    document.getElementById("courseworkClose")?.addEventListener("click", closeCourseworkModal);
+    document.getElementById("courseworkModal")?.addEventListener("click", (event) => {
+      if (event.target.id === "courseworkModal") closeCourseworkModal();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeCourseworkModal();
+    });
 
     renderConnectionMap();
     window.addEventListener("resize", drawConnectionLines);
