@@ -2923,8 +2923,7 @@ function buildProjectCard(project) {
     const themeLabel = document.getElementById("themeLabel");
     const themeIcon = document.getElementById("themeIcon");
     const savedTheme = localStorage.getItem("portfolio-theme");
-    const prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
-    const initialTheme = savedTheme || (prefersLight ? "light" : "dark");
+    const initialTheme = savedTheme || "dark";
 
     function applyTheme(theme) {
       document.body.setAttribute("data-theme", theme);
